@@ -1,0 +1,122 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isStudent() {
+      return isAuthenticated() && 
+             get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'student';
+    }
+    
+    function isTeacher() {
+      return isAuthenticated() && 
+             get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'teacher';
+    }
+    
+    function isAdmin() {
+      return isAuthenticated() && 
+             get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+    
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+    
+    function isQuizOwner(teacherId) {
+      return isAuthenticated() && request.auth.uid == teacherId;
+    }
+    
+    // Users collection
+    match /users/{userId} {
+      // Anyone authenticated can read user profiles (for leaderboards)
+      allow read: if isAuthenticated();
+      
+      // Users can create their own profile during signup
+      allow create: if isAuthenticated() && isOwner(userId);
+      
+      // Users can update their own profile, admins can update any profile
+      allow update: if isOwner(userId) || isAdmin();
+      
+      // Only admins can delete users
+      allow delete: if isAdmin();
+    }
+    
+    // Quizzes collection
+    match /quizzes/{quizId} {
+      // Students can read quizzes (to join by PIN)
+      // Teachers can read their own quizzes
+      // Admins can read all quizzes
+      allow read: if isAuthenticated();
+      
+      // Only teachers and admins can create quizzes
+      allow create: if isTeacher() || isAdmin();
+      
+      // Teachers can update their own quizzes, admins can update any quiz
+      allow update: if (isTeacher() && isQuizOwner(resource.data.teacherId)) || isAdmin();
+      
+      // Teachers can delete their own quizzes, admins can delete any quiz
+      allow delete: if (isTeacher() && isQuizOwner(resource.data.teacherId)) || isAdmin();
+    }
+    
+    // Quiz attempts collection
+    match /quiz_attempts/{attemptId} {
+      // Students can read their own attempts
+      // Teachers can read attempts for their quizzes
+      // Admins can read all attempts
+      allow read: if isOwner(resource.data.studentId) || 
+                     isTeacher() || 
+                     isAdmin();
+      
+      // Only students can create attempts
+      allow create: if isStudent() && isOwner(request.resource.data.studentId);
+      
+      // Students can update their own attempts (submit answers)
+      // System can update for auto-submit
+      allow update: if isOwner(resource.data.studentId);
+      
+      // Only admins can delete attempts
+      allow delete: if isAdmin();
+    }
+    
+    // Badges collection
+    match /badges/{badgeId} {
+      // Anyone authenticated can read badges
+      allow read: if isAuthenticated();
+      
+      // Only admins can create, update, or delete badges
+      allow create, update, delete: if isAdmin();
+    }
+    
+    // Global leaderboard
+    match /leaderboard/global {
+      // Anyone authenticated can read the leaderboard
+      allow read: if isAuthenticated();
+      
+      // Only system/cloud functions can write to leaderboard
+      // In practice, this should be managed by Cloud Functions
+      allow write: if false;
+    }
+    
+    // Quiz-specific leaderboards
+    match /quiz_leaderboards/{quizId} {
+      // Anyone authenticated can read quiz leaderboards
+      allow read: if isAuthenticated();
+      
+      // Only system/cloud functions can write to leaderboards
+      allow write: if false;
+    }
+    
+    // Audit logs (admin actions)
+    match /audit_logs/{logId} {
+      // Only admins can read audit logs
+      allow read: if isAdmin();
+      
+      // Only system can write audit logs
+      allow write: if false;
+    }
+  }
+}

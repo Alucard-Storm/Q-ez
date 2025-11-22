@@ -51,13 +51,22 @@
     - Add BadgeType enum for different achievement categories
     - _Requirements: 13.1, 13.2, 13.3, 13.4_
 
-- [ ] 3. Set up Firebase configuration and initialization
-  - [ ] 3.1 Configure Firebase for Android, iOS, and Web platforms
+- [x] 3. Set up Firebase configuration and initialization
+
+
+
+
+
+
+  - [x] 3.1 Configure Firebase for Android, iOS, and Web platforms
+
     - Add Firebase configuration files (google-services.json, GoogleService-Info.plist, firebase-config.js)
     - Initialize Firebase in main.dart with platform detection
     - Set up Firebase Crashlytics for error reporting
     - _Requirements: 17.1, 17.5_
-  - [ ] 3.2 Define Firestore collection structure and security rules
+
+  - [x] 3.2 Define Firestore collection structure and security rules
+
     - Create Firestore collections schema (users, quizzes, quiz_attempts, badges, leaderboard)
     - Write Firestore security rules for role-based access control
     - Create indexes for optimized queries (studentId, quizId, score, level)

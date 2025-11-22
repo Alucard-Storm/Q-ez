@@ -1,6 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'core/config/firebase_config.dart';
 
-void main() {
+void main() async {
+  // Ensure Flutter binding is initialized
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Lock device orientation to portrait
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+
+  // Initialize Firebase
+  await FirebaseConfig.initialize();
+
   runApp(const MyApp());
 }
 
