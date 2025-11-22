@@ -51,4 +51,9 @@ abstract class QuizAttemptRepository {
   /// Get the current active attempt for a student (if any)
   /// Returns the active attempt or null if no active attempt exists
   Future<QuizAttempt?> getActiveAttempt(String studentId);
+
+  /// Flag a quiz attempt as suspicious
+  /// Marks the attempt as flagged due to security violations
+  /// Throws [QuizAttemptException] if attempt doesn't exist
+  Future<void> flagAttempt(String attemptId);
 }

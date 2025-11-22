@@ -266,6 +266,28 @@ class FirebaseQuizAttemptRepository implements QuizAttemptRepository {
     }
   }
 
+  @override
+  Future<void> flagAttempt(String attemptId) async {
+    try {
+      final docRef = _firestore
+          .collection(FirestoreConstants.quizAttemptsCollection)
+          .doc(attemptId);
+
+      final docSnapshot = await docRef.get();
+      if (!docSnapshot.exists) {
+        throw QuizAttemptNotFoundException(attemptId);
+      }
+
+      // Flag the attempt as suspicious
+      await docRef.update({
+        FirestoreConstants.attemptIsFlagged: true,
+      });
+    } catch (e) {
+      if (e is QuizAttemptNotFoundException) rethrow;
+      throw QuizAttemptException('Failed to flag attempt: ${e.toString()}');
+    }
+  }
+
   /// Calculate score based on correct answers
   double _calculateScore(Quiz quiz, Map<String, int> answers) {
     int correctCount = 0;

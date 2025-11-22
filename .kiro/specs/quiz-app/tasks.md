@@ -197,19 +197,30 @@
     - Create ViewAuditLogsUseCase for security monitoring
     - _Requirements: 10.3, 10.4, 11.1, 11.2, 11.3, 11.4, 11.5, 12.1, 12.2, 12.3, 12.4, 12.5_
 
-- [ ] 8. Implement security monitoring system
-  - [ ] 8.1 Create web security monitor for browser-based anti-cheating
+- [x] 8. Implement security monitoring system
+
+
+
+
+
+  - [x] 8.1 Create web security monitor for browser-based anti-cheating
+
+
     - Implement right-click disable functionality using dart:html
     - Add text selection and copy prevention
     - Implement tab visibility change detection
     - Add keyboard shortcut blocking (Ctrl+C, Ctrl+X, Ctrl+A)
     - _Requirements: 15.1, 15.2, 15.3, 15.8_
-  - [ ] 8.2 Create mobile security monitor for app-based anti-cheating
+  - [x] 8.2 Create mobile security monitor for app-based anti-cheating
+
+
     - Implement app lifecycle observer for app switch detection
     - Add long-press gesture blocking
     - Implement secure screen wrapper widget
     - _Requirements: 15.4, 15.8_
-  - [ ] 8.3 Implement violation recording and auto-submit logic
+  - [x] 8.3 Implement violation recording and auto-submit logic
+
+
     - Create SecurityMonitor service with violation counter
     - Add violation recording to QuizAttempt
     - Implement auto-submit when violation threshold (3) is reached
