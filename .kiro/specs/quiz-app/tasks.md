@@ -276,20 +276,31 @@
   - Add navigation transitions and error handling
   - _Requirements: 1.3, 4.2, 10.2_
 
-- [ ] 11. Build authentication UI screens
-  - [ ] 11.1 Create login screen with role selection
+- [x] 11. Build authentication UI screens
+
+
+
+
+
+  - [x] 11.1 Create login screen with role selection
+
+
     - Build adaptive login form with email and password fields
     - Add role selector (Student, Teacher, Admin)
     - Implement form validation and error display
     - Add navigation to sign up and password reset screens
     - _Requirements: 1.1, 1.2, 4.1, 4.2, 10.1, 10.2_
-  - [ ] 11.2 Create sign up screen
+  - [x] 11.2 Create sign up screen
+
+
     - Build registration form with name, email, and password fields
     - Add role selection for new users
     - Implement password strength validation
     - Add terms and conditions acceptance
     - _Requirements: 1.1, 4.1, 4.3_
-  - [ ] 11.3 Create password reset screen
+  - [x] 11.3 Create password reset screen
+
+
     - Build password reset form with email input
     - Add email validation and submission
     - Display success/error messages

@@ -3,6 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../domain/entities/user.dart';
 import '../../presentation/providers/auth_providers.dart';
+import '../../presentation/screens/auth/login_screen.dart';
+import '../../presentation/screens/auth/sign_up_screen.dart';
+import '../../presentation/screens/auth/password_reset_screen.dart';
 import 'routes.dart';
 
 /// Provider for GoRouter instance with authentication and role-based access control
@@ -54,7 +57,7 @@ final routerProvider = Provider<GoRouter>((ref) {
         pageBuilder: (context, state) => _buildPageWithTransition(
           context: context,
           state: state,
-          child: const Placeholder(), // TODO: Replace with LoginScreen
+          child: const LoginScreen(),
         ),
       ),
       GoRoute(
@@ -63,7 +66,7 @@ final routerProvider = Provider<GoRouter>((ref) {
         pageBuilder: (context, state) => _buildPageWithTransition(
           context: context,
           state: state,
-          child: const Placeholder(), // TODO: Replace with SignUpScreen
+          child: const SignUpScreen(),
         ),
       ),
       GoRoute(
@@ -72,7 +75,7 @@ final routerProvider = Provider<GoRouter>((ref) {
         pageBuilder: (context, state) => _buildPageWithTransition(
           context: context,
           state: state,
-          child: const Placeholder(), // TODO: Replace with PasswordResetScreen
+          child: const PasswordResetScreen(),
         ),
       ),
 
