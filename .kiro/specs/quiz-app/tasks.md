@@ -77,6 +77,7 @@
 
 
 
+
   - Define AuthRepository interface with sign in, sign up, sign out, and auth state methods
   - Define QuizRepository interface with CRUD operations and PIN-based queries
   - Define QuizAttemptRepository interface with attempt lifecycle methods
@@ -84,42 +85,60 @@
   - Define BadgeRepository interface with badge retrieval and awarding methods
   - _Requirements: 1.1, 1.2, 2.1, 4.1, 4.2, 5.1, 10.1, 11.1, 12.1_
 
-- [ ] 5. Implement Firebase repository implementations in data layer
-  - [ ] 5.1 Implement FirebaseAuthRepository
+- [x] 5. Implement Firebase repository implementations in data layer
+
+
+
+
+
+  - [x] 5.1 Implement FirebaseAuthRepository
+
+
     - Implement email/password authentication with Firebase Auth
     - Add role-based authentication using custom claims
     - Implement auth state stream for reactive authentication
     - Add password reset functionality
     - _Requirements: 1.1, 1.2, 1.3, 4.1, 4.2, 10.1, 10.2_
-  - [ ] 5.2 Implement FirebaseQuizRepository
+  - [x] 5.2 Implement FirebaseQuizRepository
+
+
     - Implement quiz creation with automatic PIN generation when blank
     - Add PIN uniqueness validation logic
     - Implement quiz retrieval by PIN and by ID
     - Add CRUD operations for quizzes with teacher and admin permissions
     - _Requirements: 2.1, 2.2, 2.3, 2.4, 2.5, 3.1, 3.2, 3.3, 3.4, 12.1, 12.2, 12.3_
-  - [ ] 5.3 Implement FirebaseQuizAttemptRepository
+  - [x] 5.3 Implement FirebaseQuizAttemptRepository
+
+
     - Implement quiz attempt creation and initialization
     - Add answer submission and recording logic
     - Implement quiz completion with score calculation
     - Add security violation recording and tracking
     - Implement auto-submit logic when violations reach threshold
     - _Requirements: 5.1, 5.2, 5.4, 5.5, 5.6, 6.1, 6.2, 15.5, 15.6, 15.7_
-  - [ ] 5.4 Implement FirebaseUserRepository
+  - [x] 5.4 Implement FirebaseUserRepository
+
+
     - Implement student profile retrieval and updates
     - Add level progression logic with passing threshold check
     - Implement leaderboard generation with ranking algorithm
     - Add top 10 students per quiz with score and time-based ranking
     - Implement admin user management operations
     - _Requirements: 4.3, 4.4, 7.1, 7.2, 7.3, 7.4, 7.5, 8.1, 8.2, 8.3, 8.4, 8.5, 9.1, 9.2, 9.3, 11.1, 11.2, 11.3, 11.4, 11.5_
-  - [ ] 5.5 Implement FirebaseBadgeRepository
+  - [x] 5.5 Implement FirebaseBadgeRepository
+
+
     - Implement badge retrieval for all available badges
     - Add student badge fetching logic
     - Implement badge awarding logic with criteria checking
     - Add automatic badge checking after quiz completion
     - _Requirements: 13.1, 13.2, 13.3, 13.4, 13.5, 13.6, 13.7_
 
-- [ ] 6. Set up local storage with Hive for offline caching
-  - [ ] 6.1 Configure Hive and create type adapters
+- [-] 6. Set up local storage with Hive for offline caching
+
+
+  - [-] 6.1 Configure Hive and create type adapters
+
     - Initialize Hive with Flutter integration
     - Create Hive type adapters for User, Quiz, and security settings
     - Set up encrypted Hive boxes for sensitive data
