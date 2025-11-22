@@ -16,24 +16,37 @@
   - Create folder structure following clean architecture (data, domain, presentation layers)
   - _Requirements: 17.1, 17.2_
 
-- [ ] 2. Implement core domain entities and models
-  - [ ] 2.1 Create User entity hierarchy with Student, Teacher, and Admin classes
+- [x] 2. Implement core domain entities and models
+
+
+
+
+
+
+  - [x] 2.1 Create User entity hierarchy with Student, Teacher, and Admin classes
+
     - Define abstract User class with common properties
     - Implement Student class with level, badges, and statistics
     - Implement Teacher and Admin classes with role-specific properties
     - Add Freezed annotations for immutability and code generation
     - _Requirements: 1.1, 1.3, 4.1, 4.3, 10.1_
-  - [ ] 2.2 Create Quiz and Question entities
+
+  - [x] 2.2 Create Quiz and Question entities
+
     - Define Quiz class with title, description, PIN, time limit, and questions
     - Define Question class with text, four options, and correct answer index
     - Add validation logic for quiz data integrity
     - _Requirements: 2.1, 2.2, 2.3, 2.4, 3.1_
-  - [ ] 2.3 Create QuizAttempt and SecurityViolation entities
+
+  - [x] 2.3 Create QuizAttempt and SecurityViolation entities
+
     - Define QuizAttempt class with answers, score, timestamps, and violations
     - Define SecurityViolation class with type and timestamp
     - Add enums for SecurityViolationType
     - _Requirements: 5.4, 5.5, 15.3, 15.4, 15.5_
-  - [ ] 2.4 Create Badge entity and achievement system models
+
+  - [x] 2.4 Create Badge entity and achievement system models
+
     - Define Badge class with name, description, icon, type, and requirements
     - Add BadgeType enum for different achievement categories
     - _Requirements: 13.1, 13.2, 13.3, 13.4_
