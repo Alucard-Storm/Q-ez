@@ -72,7 +72,11 @@
     - Create indexes for optimized queries (studentId, quizId, score, level)
     - _Requirements: 1.3, 10.3, 11.1_
 
-- [ ] 4. Implement repository interfaces in domain layer
+- [x] 4. Implement repository interfaces in domain layer
+
+
+
+
   - Define AuthRepository interface with sign in, sign up, sign out, and auth state methods
   - Define QuizRepository interface with CRUD operations and PIN-based queries
   - Define QuizAttemptRepository interface with attempt lifecycle methods
