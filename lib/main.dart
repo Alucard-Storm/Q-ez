@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'core/config/firebase_config.dart';
+import 'core/config/hive_config.dart';
 
 void main() async {
   // Ensure Flutter binding is initialized
@@ -11,6 +12,9 @@ void main() async {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
+
+  // Initialize Hive
+  await HiveConfig.initialize();
 
   // Initialize Firebase
   await FirebaseConfig.initialize();

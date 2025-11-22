@@ -134,16 +134,21 @@
     - Add automatic badge checking after quiz completion
     - _Requirements: 13.1, 13.2, 13.3, 13.4, 13.5, 13.6, 13.7_
 
-- [-] 6. Set up local storage with Hive for offline caching
+- [x] 6. Set up local storage with Hive for offline caching
 
 
-  - [-] 6.1 Configure Hive and create type adapters
+
+
+  - [x] 6.1 Configure Hive and create type adapters
+
 
     - Initialize Hive with Flutter integration
     - Create Hive type adapters for User, Quiz, and security settings
     - Set up encrypted Hive boxes for sensitive data
     - _Requirements: 17.1_
-  - [ ] 6.2 Implement local cache repository
+  - [x] 6.2 Implement local cache repository
+
+
     - Create cache repository for storing user session data
     - Implement quiz caching for offline access
     - Add cache invalidation and sync logic
