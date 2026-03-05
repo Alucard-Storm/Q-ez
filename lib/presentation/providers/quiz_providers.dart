@@ -118,7 +118,7 @@ final activeAttemptProvider =
 /// Handles time tracking during quiz attempts
 class TimerNotifier extends StateNotifier<int> {
   Timer? _timer;
-  final VoidCallback? onTimeUp;
+  VoidCallback? onTimeUp;
 
   TimerNotifier(super.totalSeconds, {this.onTimeUp});
 
@@ -214,4 +214,11 @@ final quizzesByTeacherProvider =
     FutureProvider.family<List<Quiz>, String>((ref, teacherId) async {
   final repository = ref.watch(quizRepositoryProvider);
   return repository.getQuizzesByTeacher(teacherId);
+});
+
+/// Provider for getting a quiz attempt by ID
+/// Usage: ref.watch(attemptByIdProvider(attemptId))
+final attemptByIdProvider = FutureProvider.family<QuizAttempt, String>((ref, attemptId) async {
+  final repository = ref.watch(attemptRepositoryProvider);
+  return repository.getAttempt(attemptId);
 });

@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 import '../../../domain/entities/quiz_attempt.dart';
 import '../../../domain/repositories/quiz_attempt_repository.dart';
-import 'web_security_monitor.dart' if (dart.library.io) 'mobile_security_monitor.dart';
-import 'mobile_security_monitor.dart' if (dart.library.html) 'web_security_monitor.dart';
+import 'web_security_monitor.dart';
+import 'mobile_security_monitor.dart';
 
 /// Main security monitor service that coordinates platform-specific monitors
 class SecurityMonitor {

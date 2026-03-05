@@ -6,6 +6,14 @@ import '../../presentation/providers/auth_providers.dart';
 import '../../presentation/screens/auth/login_screen.dart';
 import '../../presentation/screens/auth/sign_up_screen.dart';
 import '../../presentation/screens/auth/password_reset_screen.dart';
+import '../../presentation/screens/student/student_home_screen.dart';
+import '../../presentation/screens/student/join_quiz_screen.dart';
+import '../../presentation/screens/student/quiz_taking_screen.dart';
+import '../../presentation/screens/student/quiz_results_screen.dart';
+import '../../presentation/screens/student/progress_dashboard_screen.dart';
+import '../../presentation/screens/student/leaderboard_screen.dart';
+import '../../presentation/screens/student/badges_screen.dart';
+import '../../presentation/screens/student/quiz_top_students_screen.dart';
 import 'routes.dart';
 
 /// Provider for GoRouter instance with authentication and role-based access control
@@ -86,7 +94,7 @@ final routerProvider = Provider<GoRouter>((ref) {
         pageBuilder: (context, state) => _buildPageWithTransition(
           context: context,
           state: state,
-          child: const Placeholder(), // TODO: Replace with StudentHomeScreen
+          child: const StudentHomeScreen(),
         ),
       ),
       GoRoute(
@@ -95,18 +103,18 @@ final routerProvider = Provider<GoRouter>((ref) {
         pageBuilder: (context, state) => _buildPageWithTransition(
           context: context,
           state: state,
-          child: const Placeholder(), // TODO: Replace with JoinQuizScreen
+          child: const JoinQuizScreen(),
         ),
       ),
       GoRoute(
         path: Routes.quizTaking,
         name: RouteNames.quizTaking,
         pageBuilder: (context, state) {
-          // final quizId = state.pathParameters['quizId']!;
+          final quizId = state.pathParameters['quizId']!;
           return _buildPageWithTransition(
             context: context,
             state: state,
-            child: const Placeholder(), // TODO: Replace with QuizTakingScreen(quizId: quizId)
+            child: QuizTakingScreen(quizId: quizId),
           );
         },
       ),
@@ -114,11 +122,11 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: Routes.quizResults,
         name: RouteNames.quizResults,
         pageBuilder: (context, state) {
-          // final attemptId = state.pathParameters['attemptId']!;
+          final attemptId = state.pathParameters['attemptId']!;
           return _buildPageWithTransition(
             context: context,
             state: state,
-            child: const Placeholder(), // TODO: Replace with QuizResultsScreen(attemptId: attemptId)
+            child: QuizResultsScreen(attemptId: attemptId),
           );
         },
       ),
@@ -128,7 +136,7 @@ final routerProvider = Provider<GoRouter>((ref) {
         pageBuilder: (context, state) => _buildPageWithTransition(
           context: context,
           state: state,
-          child: const Placeholder(), // TODO: Replace with ProgressDashboardScreen
+          child: const ProgressDashboardScreen(),
         ),
       ),
       GoRoute(
@@ -137,7 +145,7 @@ final routerProvider = Provider<GoRouter>((ref) {
         pageBuilder: (context, state) => _buildPageWithTransition(
           context: context,
           state: state,
-          child: const Placeholder(), // TODO: Replace with LeaderboardScreen
+          child: const LeaderboardScreen(),
         ),
       ),
       GoRoute(
@@ -146,18 +154,18 @@ final routerProvider = Provider<GoRouter>((ref) {
         pageBuilder: (context, state) => _buildPageWithTransition(
           context: context,
           state: state,
-          child: const Placeholder(), // TODO: Replace with BadgesScreen
+          child: const BadgesScreen(),
         ),
       ),
       GoRoute(
         path: Routes.quizTopStudents,
         name: RouteNames.quizTopStudents,
         pageBuilder: (context, state) {
-          // final quizId = state.pathParameters['quizId']!;
+          final quizId = state.pathParameters['quizId']!;
           return _buildPageWithTransition(
             context: context,
             state: state,
-            child: const Placeholder(), // TODO: Replace with QuizTopStudentsScreen(quizId: quizId)
+            child: QuizTopStudentsScreen(quizId: quizId),
           );
         },
       ),
