@@ -397,14 +397,14 @@
     - Add "Try Again" button to retake quiz
     - _Requirements: 8.1, 8.2, 8.3, 8.4, 8.5_
 
-- [ ] 13. Build teacher UI screens and features
-  - [ ] 13.1 Create teacher home dashboard
+- [x] 13. Build teacher UI screens and features
+  - [x] 13.1 Create teacher home dashboard
     - Build dashboard with quiz statistics (total quizzes created, total attempts, average scores)
     - Display list of created quizzes with quick actions (edit, delete, view analytics)
     - Add "Create New Quiz" floating action button
     - Show recent student activity
     - _Requirements: 2.5, 16.3_
-  - [ ] 13.2 Create quiz creation screen
+  - [x] 13.2 Create quiz creation screen
     - Build quiz form with title and description inputs
     - Add time limit input with optional toggle
     - Implement dynamic question list with add/remove functionality
@@ -414,12 +414,12 @@
     - Add form validation for all required fields
     - Display generated PIN after creation
     - _Requirements: 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 3.1, 3.2, 3.4_
-  - [ ] 13.3 Create quiz edit screen
+  - [x] 13.3 Create quiz edit screen
     - Reuse quiz creation form with pre-filled data
     - Add update and cancel buttons
     - Implement confirmation dialog for destructive changes
     - _Requirements: 2.5, 2.7_
-  - [ ] 13.4 Create quiz analytics screen
+  - [x] 13.4 Create quiz analytics screen
     - Display quiz statistics (total attempts, average score, pass rate, completion rate)
     - Show top 10 students for this quiz
     - Display question-level analytics (most missed questions, average time per question)
@@ -427,7 +427,7 @@
     - List all attempts with student names, scores, and violation flags
     - Add filter and sort options
     - _Requirements: 6.1, 8.1, 15.7, 16.1, 16.2, 16.4_
-  - [ ] 13.5 Create student progress viewer screen
+  - [x] 13.5 Create student progress viewer screen
     - Build student search and selection interface
     - Display selected student's progress dashboard
     - Show student's earned badges

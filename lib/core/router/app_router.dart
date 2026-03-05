@@ -14,6 +14,11 @@ import '../../presentation/screens/student/progress_dashboard_screen.dart';
 import '../../presentation/screens/student/leaderboard_screen.dart';
 import '../../presentation/screens/student/badges_screen.dart';
 import '../../presentation/screens/student/quiz_top_students_screen.dart';
+import '../../presentation/screens/teacher/teacher_home_screen.dart';
+import '../../presentation/screens/teacher/create_quiz_screen.dart';
+import '../../presentation/screens/teacher/edit_quiz_screen.dart';
+import '../../presentation/screens/teacher/quiz_analytics_screen.dart';
+import '../../presentation/screens/teacher/student_progress_screen.dart';
 import 'routes.dart';
 
 /// Provider for GoRouter instance with authentication and role-based access control
@@ -177,7 +182,7 @@ final routerProvider = Provider<GoRouter>((ref) {
         pageBuilder: (context, state) => _buildPageWithTransition(
           context: context,
           state: state,
-          child: const Placeholder(), // TODO: Replace with TeacherHomeScreen
+          child: const TeacherHomeScreen(),
         ),
       ),
       GoRoute(
@@ -186,18 +191,18 @@ final routerProvider = Provider<GoRouter>((ref) {
         pageBuilder: (context, state) => _buildPageWithTransition(
           context: context,
           state: state,
-          child: const Placeholder(), // TODO: Replace with CreateQuizScreen
+          child: const CreateQuizScreen(),
         ),
       ),
       GoRoute(
         path: Routes.editQuiz,
         name: RouteNames.editQuiz,
         pageBuilder: (context, state) {
-          // final quizId = state.pathParameters['quizId']!;
+          final quizId = state.pathParameters['quizId']!;
           return _buildPageWithTransition(
             context: context,
             state: state,
-            child: const Placeholder(), // TODO: Replace with EditQuizScreen(quizId: quizId)
+            child: EditQuizScreen(quizId: quizId),
           );
         },
       ),
@@ -205,11 +210,11 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: Routes.quizAnalytics,
         name: RouteNames.quizAnalytics,
         pageBuilder: (context, state) {
-          // final quizId = state.pathParameters['quizId']!;
+          final quizId = state.pathParameters['quizId']!;
           return _buildPageWithTransition(
             context: context,
             state: state,
-            child: const Placeholder(), // TODO: Replace with QuizAnalyticsScreen(quizId: quizId)
+            child: QuizAnalyticsScreen(quizId: quizId),
           );
         },
       ),
@@ -217,11 +222,11 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: Routes.studentProgress,
         name: RouteNames.studentProgress,
         pageBuilder: (context, state) {
-          // final studentId = state.pathParameters['studentId']!;
+          final studentId = state.pathParameters['studentId'];
           return _buildPageWithTransition(
             context: context,
             state: state,
-            child: const Placeholder(), // TODO: Replace with StudentProgressScreen(studentId: studentId)
+            child: StudentProgressScreen(studentId: studentId),
           );
         },
       ),
