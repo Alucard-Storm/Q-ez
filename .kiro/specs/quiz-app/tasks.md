@@ -505,7 +505,7 @@
   - _Requirements: 17.1_
 
 - [ ] 20. Configure platform-specific builds
-  - [ ] 20.1 Configure Android build
+  - [-] 20.1 Configure Android build
     - Set minSdkVersion to 32 in build.gradle
     - Configure app signing for release builds
     - Add ProGuard rules for code obfuscation
@@ -517,7 +517,7 @@
     - Add app icons and launch screen
     - Configure Info.plist with required permissions
     - _Requirements: 17.4_
-  - [ ] 20.3 Configure web build
+  - [~] 20.3 Configure web build
     - Set up index.html with Firebase configuration
     - Configure web manifest for PWA support
     - Add favicon and app icons
