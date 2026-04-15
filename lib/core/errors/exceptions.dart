@@ -104,3 +104,31 @@ class NetworkException extends AppException {
   @override
   String toString() => 'NetworkException: $message';
 }
+
+/// Permission related exceptions
+class PermissionException extends AppException {
+  PermissionException([String message = 'Permission denied'])
+      : super(message);
+
+  @override
+  String toString() => 'PermissionException: $message';
+}
+
+/// Validation related exceptions
+class ValidationException extends AppException {
+  final Map<String, String>? fieldErrors;
+
+  ValidationException(super.message, {this.fieldErrors});
+
+  @override
+  String toString() => 'ValidationException: $message';
+}
+
+/// Cache related exceptions
+class CacheException extends AppException {
+  CacheException([String message = 'Cache operation failed'])
+      : super(message);
+
+  @override
+  String toString() => 'CacheException: $message';
+}

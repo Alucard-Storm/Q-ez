@@ -5,6 +5,7 @@ import 'core/config/firebase_config.dart';
 import 'core/config/hive_config.dart';
 import 'core/router/router.dart';
 import 'core/theme/theme.dart';
+import 'core/utils/app_logger.dart';
 
 void main() async {
   // Ensure Flutter binding is initialized
@@ -19,8 +20,11 @@ void main() async {
   // Initialize Hive
   await HiveConfig.initialize();
 
-  // Initialize Firebase
+  // Initialize Firebase (also sets up FlutterError.onError and
+  // PlatformDispatcher.instance.onError for Crashlytics)
   await FirebaseConfig.initialize();
+
+  AppLogger.info('App started');
 
   runApp(const ProviderScope(child: MyApp()));
 }
