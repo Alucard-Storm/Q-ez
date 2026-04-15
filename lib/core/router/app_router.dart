@@ -19,6 +19,7 @@ import '../../presentation/screens/teacher/create_quiz_screen.dart';
 import '../../presentation/screens/teacher/edit_quiz_screen.dart';
 import '../../presentation/screens/teacher/quiz_analytics_screen.dart';
 import '../../presentation/screens/teacher/student_progress_screen.dart';
+import '../../presentation/screens/admin/admin_screens.dart';
 import 'routes.dart';
 
 /// Provider for GoRouter instance with authentication and role-based access control
@@ -238,7 +239,7 @@ final routerProvider = Provider<GoRouter>((ref) {
         pageBuilder: (context, state) => _buildPageWithTransition(
           context: context,
           state: state,
-          child: const Placeholder(), // TODO: Replace with AdminHomeScreen
+          child: const AdminDashboardScreen(),
         ),
       ),
       GoRoute(
@@ -247,7 +248,7 @@ final routerProvider = Provider<GoRouter>((ref) {
         pageBuilder: (context, state) => _buildPageWithTransition(
           context: context,
           state: state,
-          child: const Placeholder(), // TODO: Replace with UserManagementScreen
+          child: const UserManagementScreen(),
         ),
       ),
       GoRoute(
@@ -256,7 +257,7 @@ final routerProvider = Provider<GoRouter>((ref) {
         pageBuilder: (context, state) => _buildPageWithTransition(
           context: context,
           state: state,
-          child: const Placeholder(), // TODO: Replace with QuizManagementScreen
+          child: const QuizManagementScreen(),
         ),
       ),
       GoRoute(
@@ -265,7 +266,7 @@ final routerProvider = Provider<GoRouter>((ref) {
         pageBuilder: (context, state) => _buildPageWithTransition(
           context: context,
           state: state,
-          child: const Placeholder(), // TODO: Replace with AuditLogsScreen
+          child: const AuditLogsScreen(),
         ),
       ),
 

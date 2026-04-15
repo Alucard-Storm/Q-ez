@@ -435,14 +435,14 @@
     - Add export functionality for student reports
     - _Requirements: 16.1, 16.2, 16.4_
 
-- [ ] 14. Build admin UI screens and features
-  - [ ] 14.1 Create admin dashboard
+- [x] 14. Build admin UI screens and features
+  - [x] 14.1 Create admin dashboard
     - Build overview with platform statistics (total users, total quizzes, total attempts)
     - Display user breakdown by role (students, teachers, admins)
     - Show recent activity feed
     - Add quick action buttons for user and quiz management
     - _Requirements: 10.3, 11.1, 12.1_
-  - [ ] 14.2 Create user management screen
+  - [x] 14.2 Create user management screen
     - Build user list with search and filter by role
     - Display user cards with name, email, role, and action buttons
     - Add edit user dialog for updating profile information
@@ -450,7 +450,7 @@
     - Add password reset functionality
     - Show user statistics (quizzes taken/created, level for students)
     - _Requirements: 11.1, 11.2, 11.3, 11.4, 11.5_
-  - [ ] 14.3 Create quiz management screen
+  - [x] 14.3 Create quiz management screen
     - Build quiz list showing all quizzes from all teachers
     - Add search and filter by teacher
     - Display quiz cards with title, teacher name, and action buttons
@@ -458,7 +458,7 @@
     - Add delete quiz with confirmation and cascade warning
     - Add activate/deactivate toggle for quizzes
     - _Requirements: 12.1, 12.2, 12.3, 12.4, 12.5_
-  - [ ] 14.4 Create audit logs screen
+  - [x] 14.4 Create audit logs screen
     - Build log list with timestamps and admin actions
     - Add filter by admin, action type, and date range
     - Display security violations with student and quiz details
