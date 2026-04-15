@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/router/navigation_extensions.dart';
+import '../../../core/widgets/skeleton_loader.dart';
 import '../../../domain/entities/user.dart';
 import '../../../domain/entities/badge.dart' as domain_badge;
 import '../../../domain/usecases/progress/get_progress_dashboard_use_case.dart';
@@ -78,7 +79,7 @@ class StudentHomeScreen extends ConsumerWidget {
     final progressAsync = ref.watch(progressDashboardProvider(studentId));
 
     return progressAsync.when(
-      loading: () => const Center(child: CircularProgressIndicator()),
+      loading: () => _buildHomeSkeleton(),
       error: (error, stack) => Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -129,6 +130,63 @@ class StudentHomeScreen extends ConsumerWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildHomeSkeleton() {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Welcome card skeleton
+          const Card(
+            child: Padding(
+              padding: EdgeInsets.all(16),
+              child: Row(
+                children: [
+                  SkeletonLoader(width: 60, height: 60, borderRadius: 30),
+                  SizedBox(width: 16),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SkeletonLoader(height: 20),
+                        SizedBox(height: 8),
+                        SkeletonLoader(width: 80, height: 14),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          const SizedBox(height: 24),
+          // Join quiz button skeleton
+          const SkeletonLoader(height: 60, borderRadius: 12),
+          const SizedBox(height: 24),
+          // Stats skeleton
+          const SkeletonLoader(width: 100, height: 20),
+          const SizedBox(height: 12),
+          Row(
+            children: const [
+              Expanded(child: SkeletonLoader(height: 90, borderRadius: 12)),
+              SizedBox(width: 12),
+              Expanded(child: SkeletonLoader(height: 90, borderRadius: 12)),
+              SizedBox(width: 12),
+              Expanded(child: SkeletonLoader(height: 90, borderRadius: 12)),
+            ],
+          ),
+          const SizedBox(height: 24),
+          // Recent history skeleton
+          const SkeletonLoader(width: 160, height: 20),
+          const SizedBox(height: 12),
+          ...List.generate(3, (_) => const Padding(
+            padding: EdgeInsets.only(bottom: 8),
+            child: SkeletonLoader(height: 72, borderRadius: 12),
+          )),
+        ],
       ),
     );
   }

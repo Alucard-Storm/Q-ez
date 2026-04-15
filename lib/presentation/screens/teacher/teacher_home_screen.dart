@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/router/navigation_extensions.dart';
+import '../../../core/widgets/skeleton_loader.dart';
 import '../../../domain/entities/user.dart';
 import '../../providers/auth_providers.dart';
 import '../../providers/teacher_providers.dart';
@@ -91,7 +92,7 @@ class TeacherHomeScreen extends ConsumerWidget {
           children: [
             // Statistics cards
             dashboardAsync.when(
-              loading: () => const Center(child: CircularProgressIndicator()),
+              loading: () => _buildStatsSkeleton(),
               error: (error, stack) => _buildErrorCard('Failed to load statistics', error),
               data: (data) => _buildStatisticsSection(data),
             ),
@@ -99,7 +100,7 @@ class TeacherHomeScreen extends ConsumerWidget {
 
             // Quiz list
             quizzesAsync.when(
-              loading: () => const Center(child: CircularProgressIndicator()),
+              loading: () => _buildQuizListSkeleton(),
               error: (error, stack) => _buildErrorCard('Failed to load quizzes', error),
               data: (quizzes) => _buildQuizListSection(context, ref, quizzes),
             ),
@@ -114,6 +115,39 @@ class TeacherHomeScreen extends ConsumerWidget {
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildStatsSkeleton() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SkeletonLoader(width: 80, height: 20),
+        const SizedBox(height: 12),
+        Row(
+          children: const [
+            Expanded(child: SkeletonLoader(height: 90, borderRadius: 12)),
+            SizedBox(width: 12),
+            Expanded(child: SkeletonLoader(height: 90, borderRadius: 12)),
+            SizedBox(width: 12),
+            Expanded(child: SkeletonLoader(height: 90, borderRadius: 12)),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget _buildQuizListSkeleton() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SkeletonLoader(width: 100, height: 20),
+        const SizedBox(height: 12),
+        ...List.generate(3, (_) => const Padding(
+          padding: EdgeInsets.only(bottom: 12),
+          child: CardSkeleton(),
+        )),
+      ],
     );
   }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../core/utils/debouncer.dart';
 import '../../../domain/entities/user.dart';
 import '../../providers/auth_providers.dart';
 import '../../providers/student_providers.dart';
@@ -30,6 +31,7 @@ class _StudentProgressScreenState extends ConsumerState<StudentProgressScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   final _searchController = TextEditingController();
+  final _debouncer = Debouncer(delay: const Duration(milliseconds: 400));
   String? _selectedStudentId;
   String _searchQuery = '';
 
@@ -44,6 +46,7 @@ class _StudentProgressScreenState extends ConsumerState<StudentProgressScreen>
   void dispose() {
     _tabController.dispose();
     _searchController.dispose();
+    _debouncer.dispose();
     super.dispose();
   }
 
@@ -123,8 +126,10 @@ class _StudentProgressScreenState extends ConsumerState<StudentProgressScreen>
               border: OutlineInputBorder(),
             ),
             onChanged: (value) {
-              setState(() {
-                _searchQuery = value.toLowerCase();
+              _debouncer.run(() {
+                setState(() {
+                  _searchQuery = value.toLowerCase();
+                });
               });
             },
           ),

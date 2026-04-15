@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../core/utils/debouncer.dart';
+import '../../../core/widgets/skeleton_loader.dart';
 import '../../../domain/entities/quiz.dart';
 import '../../../domain/entities/user.dart';
 import '../../providers/auth_providers.dart';
@@ -27,10 +29,12 @@ class _QuizManagementScreenState extends ConsumerState<QuizManagementScreen> {
   String _searchQuery = '';
   String? _selectedTeacherId;
   final TextEditingController _searchController = TextEditingController();
+  final _debouncer = Debouncer(delay: const Duration(milliseconds: 400));
 
   @override
   void dispose() {
     _searchController.dispose();
+    _debouncer.dispose();
     super.dispose();
   }
 
@@ -87,7 +91,7 @@ class _QuizManagementScreenState extends ConsumerState<QuizManagementScreen> {
         // Quiz list
         Expanded(
           child: allQuizzesAsync.when(
-            loading: () => const Center(child: CircularProgressIndicator()),
+            loading: () => const CardListSkeleton(),
             error: (error, stack) => _buildErrorWidget('Failed to load quizzes', error),
             data: (quizzes) => _buildQuizList(context, ref, quizzes, allTeachersAsync),
           ),
@@ -132,8 +136,10 @@ class _QuizManagementScreenState extends ConsumerState<QuizManagementScreen> {
               ),
             ),
             onChanged: (value) {
-              setState(() {
-                _searchQuery = value.toLowerCase();
+              _debouncer.run(() {
+                setState(() {
+                  _searchQuery = value.toLowerCase();
+                });
               });
             },
           ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../core/widgets/cached_image.dart';
+import '../../../core/widgets/skeleton_loader.dart';
 import '../../../domain/entities/badge.dart' as domain_badge;
 import '../../providers/auth_providers.dart';
 import '../../providers/student_providers.dart';
@@ -41,6 +43,82 @@ class _BadgesScreenState extends ConsumerState<BadgesScreen> {
 
           return _buildBadgesContent(currentUser.id);
         },
+      ),
+    );
+  }
+
+  Widget _buildBadgesLoadingSkeleton() {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SkeletonLoader(height: 140, borderRadius: 16),
+          const SizedBox(height: 24),
+          const SkeletonLoader(width: 100, height: 20),
+          const SizedBox(height: 16),
+          GridView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3,
+              crossAxisSpacing: 16,
+              mainAxisSpacing: 16,
+              childAspectRatio: 0.8,
+            ),
+            itemCount: 9,
+            itemBuilder: (_, __) => const SkeletonLoader(borderRadius: 12),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildBadgeIcon(domain_badge.Badge badge, bool isEarned, {double size = 48}) {
+    final iconAsset = badge.iconAsset;
+    final isUrl = iconAsset.startsWith('http://') || iconAsset.startsWith('https://');
+
+    if (isUrl) {
+      return CachedImage(
+        imageUrl: iconAsset,
+        width: size,
+        height: size,
+        borderRadius: size / 2,
+        errorWidget: _buildFallbackBadgeIcon(badge, isEarned, size),
+      );
+    }
+
+    return Container(
+      width: size,
+      height: size,
+      decoration: BoxDecoration(
+        color: isEarned
+            ? Theme.of(context).colorScheme.primary
+            : Colors.grey.shade400,
+        shape: BoxShape.circle,
+      ),
+      child: Icon(
+        _getBadgeIcon(badge.type),
+        color: Colors.white,
+        size: size * 0.5,
+      ),
+    );
+  }
+
+  Widget _buildFallbackBadgeIcon(domain_badge.Badge badge, bool isEarned, double size) {
+    return Container(
+      width: size,
+      height: size,
+      decoration: BoxDecoration(
+        color: isEarned
+            ? Theme.of(context).colorScheme.primary
+            : Colors.grey.shade400,
+        shape: BoxShape.circle,
+      ),
+      child: Icon(
+        _getBadgeIcon(badge.type),
+        color: Colors.white,
+        size: size * 0.5,
       ),
     );
   }
@@ -87,7 +165,7 @@ class _BadgesScreenState extends ConsumerState<BadgesScreen> {
         ref.invalidate(progressDashboardProvider(studentId));
       },
       child: allBadgesAsync.when(
-        loading: () => const Center(child: CircularProgressIndicator()),
+        loading: () => _buildBadgesLoadingSkeleton(),
         error: (error, stack) => _buildErrorWidget(error),
         data: (allBadges) {
           return studentBadgesAsync.when(
@@ -303,21 +381,7 @@ class _BadgesScreenState extends ConsumerState<BadgesScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               // Badge icon
-              Container(
-                width: 48,
-                height: 48,
-                decoration: BoxDecoration(
-                  color: isEarned 
-                      ? Theme.of(context).colorScheme.primary
-                      : Colors.grey.shade400,
-                  shape: BoxShape.circle,
-                ),
-                child: Icon(
-                  _getBadgeIcon(badge.type),
-                  color: Colors.white,
-                  size: 24,
-                ),
-              ),
+              _buildBadgeIcon(badge, isEarned),
               
               const SizedBox(height: 8),
               
@@ -567,22 +631,8 @@ class _BadgeDetailsDialog extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            // Badge icon
-            Container(
-              width: 80,
-              height: 80,
-              decoration: BoxDecoration(
-                color: isEarned 
-                    ? Theme.of(context).colorScheme.primary
-                    : Colors.grey.shade400,
-                shape: BoxShape.circle,
-              ),
-              child: Icon(
-                _getBadgeIcon(badge.type),
-                color: Colors.white,
-                size: 40,
-              ),
-            ),
+            // Badge icon - uses CachedImage for network URLs
+            _buildBadgeIcon(context),
             
             const SizedBox(height: 16),
             
@@ -713,7 +763,42 @@ class _BadgeDetailsDialog extends StatelessWidget {
     );
   }
 
-  IconData _getBadgeIcon(domain_badge.BadgeType type) {
+  Widget _buildBadgeIcon(BuildContext context) {
+    final iconAsset = badge.iconAsset;
+    final isUrl = iconAsset.startsWith('http://') || iconAsset.startsWith('https://');
+
+    if (isUrl) {
+      return CachedImage(
+        imageUrl: iconAsset,
+        width: 80,
+        height: 80,
+        borderRadius: 40,
+        errorWidget: _buildFallbackIcon(context),
+      );
+    }
+
+    return _buildFallbackIcon(context);
+  }
+
+  Widget _buildFallbackIcon(BuildContext context) {
+    return Container(
+      width: 80,
+      height: 80,
+      decoration: BoxDecoration(
+        color: isEarned
+            ? Theme.of(context).colorScheme.primary
+            : Colors.grey.shade400,
+        shape: BoxShape.circle,
+      ),
+      child: Icon(
+        _getBadgeIconData(badge.type),
+        color: Colors.white,
+        size: 40,
+      ),
+    );
+  }
+
+  IconData _getBadgeIconData(domain_badge.BadgeType type) {
     switch (type) {
       case domain_badge.BadgeType.quizzesCompleted:
         return Icons.quiz;

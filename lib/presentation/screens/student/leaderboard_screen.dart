@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../core/widgets/skeleton_loader.dart';
 import '../../../domain/entities/user.dart';
 import '../../../domain/usecases/progress/get_leaderboard_use_case.dart';
 import '../../providers/auth_providers.dart';
@@ -100,7 +101,7 @@ class _LeaderboardScreenState extends ConsumerState<LeaderboardScreen> {
           }
 
           return leaderboardAsync.when(
-            loading: () => const Center(child: CircularProgressIndicator()),
+            loading: () => const LeaderboardSkeleton(),
             error: (error, stack) => _buildErrorWidget(error),
             data: (entries) {
               _allEntries = entries;
