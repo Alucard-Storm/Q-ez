@@ -3,11 +3,13 @@ import 'package:hive_flutter/hive_flutter.dart';
 import '../../data/models/cached_user.dart';
 import '../../data/models/cached_quiz.dart';
 import '../../data/models/security_settings.dart';
+import '../../data/models/pending_operation.dart';
 
 class HiveConfig {
   static const String userBoxName = 'user_box';
   static const String quizBoxName = 'quiz_box';
   static const String securityBoxName = 'security_box';
+  static const String pendingOperationsBoxName = 'pending_operations_box';
   static const String encryptionKeyName = 'hive_encryption_key';
 
   static const FlutterSecureStorage _secureStorage = FlutterSecureStorage();
@@ -37,6 +39,9 @@ class HiveConfig {
       securityBoxName,
       encryptionCipher: HiveAesCipher(encryptionKey),
     );
+
+    // Open box for pending offline operations
+    await Hive.openBox<PendingOperation>(pendingOperationsBoxName);
   }
 
   /// Register all Hive type adapters
@@ -52,6 +57,12 @@ class HiveConfig {
     }
     if (!Hive.isAdapterRegistered(3)) {
       Hive.registerAdapter(SecuritySettingsAdapter());
+    }
+    if (!Hive.isAdapterRegistered(4)) {
+      Hive.registerAdapter(PendingOperationTypeAdapter());
+    }
+    if (!Hive.isAdapterRegistered(5)) {
+      Hive.registerAdapter(PendingOperationAdapter());
     }
   }
 
@@ -87,6 +98,11 @@ class HiveConfig {
   /// Get security settings box
   static Box<SecuritySettings> getSecurityBox() {
     return Hive.box<SecuritySettings>(securityBoxName);
+  }
+
+  /// Get pending operations box
+  static Box<PendingOperation> getPendingOperationsBox() {
+    return Hive.box<PendingOperation>(pendingOperationsBoxName);
   }
 
   /// Close all boxes

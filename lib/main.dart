@@ -6,6 +6,7 @@ import 'core/config/hive_config.dart';
 import 'core/router/router.dart';
 import 'core/theme/theme.dart';
 import 'core/utils/app_logger.dart';
+import 'core/widgets/offline_banner.dart';
 
 void main() async {
   // Ensure Flutter binding is initialized
@@ -44,6 +45,7 @@ class MyApp extends ConsumerWidget {
       darkTheme: AppTheme.darkTheme,
       themeMode: themeMode,
       routerConfig: router,
+      builder: (context, child) => OfflineBanner(child: child ?? const SizedBox.shrink()),
     );
   }
 }
