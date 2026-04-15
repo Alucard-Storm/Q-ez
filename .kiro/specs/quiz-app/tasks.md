@@ -489,7 +489,7 @@
   - Create logging utility for debugging
   - _Requirements: 1.4, 10.4_
 
-- [ ] 18. Add biometric authentication support
+- [x] 18. Add biometric authentication support
   - Integrate local_auth package for fingerprint and face ID
   - Add biometric authentication option in login screen
   - Implement secure storage for biometric credentials

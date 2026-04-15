@@ -28,6 +28,9 @@ class Routes {
   static const String quizManagement = '/admin/quizzes';
   static const String auditLogs = '/admin/audit-logs';
 
+  // Settings route (accessible to all authenticated users)
+  static const String settings = '/settings';
+
   // Deep linking routes
   static const String deepLinkQuiz = '/quiz/:pin';
 
@@ -70,6 +73,9 @@ class RouteNames {
   static const String userManagement = 'userManagement';
   static const String quizManagement = 'quizManagement';
   static const String auditLogs = 'auditLogs';
+
+  // Settings route
+  static const String settings = 'settings';
 
   // Deep linking routes
   static const String deepLinkQuiz = 'deepLinkQuiz';

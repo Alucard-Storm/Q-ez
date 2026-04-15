@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../../../core/router/routes.dart';
 import '../../../domain/entities/user.dart';
 import '../../providers/auth_providers.dart';
+import '../../providers/biometric_auth_provider.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
@@ -21,6 +22,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   bool _isLoading = false;
   bool _obscurePassword = true;
   String? _errorMessage;
+  bool _biometricLoading = false;
 
   @override
   void dispose() {
@@ -52,6 +54,39 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       setState(() {
         _errorMessage = _getErrorMessage(e);
         _isLoading = false;
+      });
+    }
+  }
+
+  Future<void> _handleBiometricLogin() async {
+    setState(() {
+      _biometricLoading = true;
+      _errorMessage = null;
+    });
+
+    try {
+      final biometricNotifier = ref.read(biometricAuthProvider.notifier);
+      final credentials = await biometricNotifier.authenticateAndGetCredentials();
+
+      if (credentials == null) {
+        setState(() {
+          _errorMessage = 'Biometric authentication failed or was cancelled';
+          _biometricLoading = false;
+        });
+        return;
+      }
+
+      final authRepository = ref.read(authRepositoryProvider);
+      await authRepository.signIn(
+        credentials.email,
+        credentials.password,
+        _selectedRole,
+      );
+      // Navigation handled by router redirect
+    } catch (e) {
+      setState(() {
+        _errorMessage = _getErrorMessage(e);
+        _biometricLoading = false;
       });
     }
   }
@@ -286,6 +321,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   ),
                   const SizedBox(height: 24),
 
+                  // Biometric login button (shown when available and enabled)
+                  _buildBiometricButton(),
+
                   // Sign Up Link
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -311,6 +349,62 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildBiometricButton() {
+    final biometricAsync = ref.watch(biometricAuthProvider);
+
+    return biometricAsync.when(
+      loading: () => const SizedBox.shrink(),
+      error: (_, __) => const SizedBox.shrink(),
+      data: (state) {
+        if (!state.isAvailable || !state.isEnabled || !state.hasCredentials) {
+          return const SizedBox.shrink();
+        }
+
+        return Column(
+          children: [
+            Row(
+              children: [
+                const Expanded(child: Divider()),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  child: Text(
+                    'or',
+                    style: TextStyle(color: Colors.grey.shade600),
+                  ),
+                ),
+                const Expanded(child: Divider()),
+              ],
+            ),
+            const SizedBox(height: 16),
+            OutlinedButton.icon(
+              onPressed: (_isLoading || _biometricLoading)
+                  ? null
+                  : _handleBiometricLogin,
+              icon: _biometricLoading
+                  ? const SizedBox(
+                      height: 20,
+                      width: 20,
+                      child: CircularProgressIndicator(strokeWidth: 2),
+                    )
+                  : const Icon(Icons.fingerprint, size: 24),
+              label: const Text(
+                'Sign in with Biometrics',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+              ),
+              style: OutlinedButton.styleFrom(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
+            ),
+            const SizedBox(height: 24),
+          ],
+        );
+      },
     );
   }
 }

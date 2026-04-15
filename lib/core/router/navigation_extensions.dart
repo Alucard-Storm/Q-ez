@@ -32,6 +32,10 @@ extension NavigationExtensions on BuildContext {
   void goToQuizManagement() => go(Routes.quizManagement);
   void goToAuditLogs() => go(Routes.auditLogs);
 
+  // Settings navigation
+  void goToSettings() => go(Routes.settings);
+  void pushSettings() => push(Routes.settings);
+
   // Deep linking navigation
   void goToDeepLinkQuiz(String pin) => go(Routes.deepLinkQuizRoute(pin));
 

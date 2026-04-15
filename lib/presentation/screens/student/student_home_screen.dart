@@ -29,6 +29,11 @@ class StudentHomeScreen extends ConsumerWidget {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         actions: [
           IconButton(
+            icon: const Icon(Icons.settings_outlined),
+            tooltip: 'Settings',
+            onPressed: () => context.pushSettings(),
+          ),
+          IconButton(
             icon: const Icon(Icons.logout),
             onPressed: () async {
               final authRepository = ref.read(authRepositoryProvider);

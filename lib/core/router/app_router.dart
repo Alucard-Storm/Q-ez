@@ -20,6 +20,7 @@ import '../../presentation/screens/teacher/edit_quiz_screen.dart';
 import '../../presentation/screens/teacher/quiz_analytics_screen.dart';
 import '../../presentation/screens/teacher/student_progress_screen.dart';
 import '../../presentation/screens/admin/admin_screens.dart';
+import '../../presentation/screens/settings/settings_screen.dart';
 import 'routes.dart';
 
 /// Provider for GoRouter instance with authentication and role-based access control
@@ -270,6 +271,17 @@ final routerProvider = Provider<GoRouter>((ref) {
         ),
       ),
 
+      // Settings route (accessible to all authenticated users)
+      GoRoute(
+        path: Routes.settings,
+        name: RouteNames.settings,
+        pageBuilder: (context, state) => _buildPageWithTransition(
+          context: context,
+          state: state,
+          child: const SettingsScreen(),
+        ),
+      ),
+
       // Deep linking route for quiz PIN sharing
       GoRoute(
         path: Routes.deepLinkQuiz,
@@ -320,7 +332,12 @@ bool _hasAccessToRoute(String path, UserRole role) {
   if (path.startsWith('/quiz/')) {
     return role == UserRole.student;
   }
-  
+
+  // Settings accessible to all authenticated users
+  if (path == Routes.settings) {
+    return true;
+  }
+
   return false;
 }
 
