@@ -563,7 +563,7 @@
     - Test badge awarding after quiz completion
     - _Requirements: All end-to-end flow requirements_
 
-- [ ] 23. Create app documentation and deployment guide
+- [x] 23. Create app documentation and deployment guide
   - Write README with project setup instructions
   - Document Firebase configuration steps
   - Create user guide for teachers, students, and admins
