@@ -410,7 +410,7 @@ class ErrorScreen extends StatelessWidget {
 
 /// Helper class to refresh GoRouter when auth state changes
 class GoRouterRefreshStream extends ChangeNotifier {
-  GoRouterRefreshStream(AsyncValue<User?> authState) {
+  GoRouterRefreshStream(AsyncValue<AppUser?> authState) {
     authState.whenData((user) {
       notifyListeners();
     });

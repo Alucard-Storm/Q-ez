@@ -28,7 +28,7 @@ final authRepositoryProvider = Provider<AuthRepository>((ref) {
 /// StreamProvider for reactive authentication state
 /// Emits the current user when authenticated, null when not authenticated
 /// Automatically updates UI when auth state changes
-final authStateProvider = StreamProvider<User?>((ref) {
+final authStateProvider = StreamProvider<AppUser?>((ref) {
   final authRepository = ref.watch(authRepositoryProvider);
   return authRepository.authStateChanges();
 });
@@ -36,7 +36,7 @@ final authStateProvider = StreamProvider<User?>((ref) {
 /// Provider for accessing the currently logged-in user data
 /// Returns null if no user is authenticated
 /// Throws an error if fetching user data fails
-final currentUserProvider = FutureProvider<User?>((ref) async {
+final currentUserProvider = FutureProvider<AppUser?>((ref) async {
   final authRepository = ref.watch(authRepositoryProvider);
   return authRepository.getCurrentUser();
 });

@@ -6,50 +6,6 @@ part of 'pending_operation.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-class PendingOperationTypeAdapter extends TypeAdapter<PendingOperationType> {
-  @override
-  final int typeId = 4;
-
-  @override
-  PendingOperationType read(BinaryReader reader) {
-    switch (reader.readByte()) {
-      case 0:
-        return PendingOperationType.submitAnswer;
-      case 1:
-        return PendingOperationType.completeQuizAttempt;
-      case 2:
-        return PendingOperationType.recordViolation;
-      default:
-        return PendingOperationType.submitAnswer;
-    }
-  }
-
-  @override
-  void write(BinaryWriter writer, PendingOperationType obj) {
-    switch (obj) {
-      case PendingOperationType.submitAnswer:
-        writer.writeByte(0);
-        break;
-      case PendingOperationType.completeQuizAttempt:
-        writer.writeByte(1);
-        break;
-      case PendingOperationType.recordViolation:
-        writer.writeByte(2);
-        break;
-    }
-  }
-
-  @override
-  int get hashCode => typeId.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is PendingOperationTypeAdapter &&
-          runtimeType == other.runtimeType &&
-          typeId == other.typeId;
-}
-
 class PendingOperationAdapter extends TypeAdapter<PendingOperation> {
   @override
   final int typeId = 5;
@@ -92,6 +48,50 @@ class PendingOperationAdapter extends TypeAdapter<PendingOperation> {
   bool operator ==(Object other) =>
       identical(this, other) ||
       other is PendingOperationAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
+}
+
+class PendingOperationTypeAdapter extends TypeAdapter<PendingOperationType> {
+  @override
+  final int typeId = 4;
+
+  @override
+  PendingOperationType read(BinaryReader reader) {
+    switch (reader.readByte()) {
+      case 0:
+        return PendingOperationType.submitAnswer;
+      case 1:
+        return PendingOperationType.completeQuizAttempt;
+      case 2:
+        return PendingOperationType.recordViolation;
+      default:
+        return PendingOperationType.submitAnswer;
+    }
+  }
+
+  @override
+  void write(BinaryWriter writer, PendingOperationType obj) {
+    switch (obj) {
+      case PendingOperationType.submitAnswer:
+        writer.writeByte(0);
+        break;
+      case PendingOperationType.completeQuizAttempt:
+        writer.writeByte(1);
+        break;
+      case PendingOperationType.recordViolation:
+        writer.writeByte(2);
+        break;
+    }
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is PendingOperationTypeAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

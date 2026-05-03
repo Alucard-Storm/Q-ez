@@ -27,12 +27,8 @@ mixin _$Badge {
   BadgeType get type => throw _privateConstructorUsedError;
   int get requirement => throw _privateConstructorUsedError;
 
-  /// Serializes this Badge to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of Badge
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $BadgeCopyWith<Badge> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -60,8 +56,6 @@ class _$BadgeCopyWithImpl<$Res, $Val extends Badge>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Badge
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -125,8 +119,6 @@ class __$$BadgeImplCopyWithImpl<$Res>
       _$BadgeImpl _value, $Res Function(_$BadgeImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of Badge
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -215,14 +207,12 @@ class _$BadgeImpl extends _Badge {
                 other.requirement == requirement));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType, id, name, description, iconAsset, type, requirement);
 
-  /// Create a copy of Badge
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$BadgeImplCopyWith<_$BadgeImpl> get copyWith =>
@@ -260,11 +250,8 @@ abstract class _Badge extends Badge {
   BadgeType get type;
   @override
   int get requirement;
-
-  /// Create a copy of Badge
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$BadgeImplCopyWith<_$BadgeImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

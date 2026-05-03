@@ -15,7 +15,7 @@ class SignUpUseCase {
   /// For admins, initializes empty audit log list
   /// Returns the newly created user
   /// Throws [AuthException] if registration fails
-  Future<User> call({
+  Future<AppUser> call({
     required String email,
     required String password,
     required String name,

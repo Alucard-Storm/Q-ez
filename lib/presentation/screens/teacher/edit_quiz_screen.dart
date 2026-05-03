@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../core/router/navigation_extensions.dart';
 import '../../../domain/entities/user.dart';
 import '../../providers/auth_providers.dart';
 import '../../providers/quiz_providers.dart';

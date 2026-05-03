@@ -23,12 +23,8 @@ mixin _$SecurityViolation {
   SecurityViolationType get type => throw _privateConstructorUsedError;
   DateTime get timestamp => throw _privateConstructorUsedError;
 
-  /// Serializes this SecurityViolation to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of SecurityViolation
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $SecurityViolationCopyWith<SecurityViolation> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -52,8 +48,6 @@ class _$SecurityViolationCopyWithImpl<$Res, $Val extends SecurityViolation>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of SecurityViolation
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -92,8 +86,6 @@ class __$$SecurityViolationImplCopyWithImpl<$Res>
       $Res Function(_$SecurityViolationImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of SecurityViolation
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -141,13 +133,11 @@ class _$SecurityViolationImpl implements _SecurityViolation {
                 other.timestamp == timestamp));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, type, timestamp);
 
-  /// Create a copy of SecurityViolation
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$SecurityViolationImplCopyWith<_$SecurityViolationImpl> get copyWith =>
@@ -174,11 +164,8 @@ abstract class _SecurityViolation implements SecurityViolation {
   SecurityViolationType get type;
   @override
   DateTime get timestamp;
-
-  /// Create a copy of SecurityViolation
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$SecurityViolationImplCopyWith<_$SecurityViolationImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -201,12 +188,8 @@ mixin _$QuizAttempt {
   List<SecurityViolation> get violations => throw _privateConstructorUsedError;
   bool get isFlagged => throw _privateConstructorUsedError;
 
-  /// Serializes this QuizAttempt to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of QuizAttempt
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $QuizAttemptCopyWith<QuizAttempt> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -241,8 +224,6 @@ class _$QuizAttemptCopyWithImpl<$Res, $Val extends QuizAttempt>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of QuizAttempt
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -337,8 +318,6 @@ class __$$QuizAttemptImplCopyWithImpl<$Res>
       _$QuizAttemptImpl _value, $Res Function(_$QuizAttemptImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of QuizAttempt
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -493,7 +472,7 @@ class _$QuizAttemptImpl extends _QuizAttempt {
                 other.isFlagged == isFlagged));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -509,9 +488,7 @@ class _$QuizAttemptImpl extends _QuizAttempt {
       const DeepCollectionEquality().hash(_violations),
       isFlagged);
 
-  /// Create a copy of QuizAttempt
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$QuizAttemptImplCopyWith<_$QuizAttemptImpl> get copyWith =>
@@ -565,11 +542,8 @@ abstract class _QuizAttempt extends QuizAttempt {
   List<SecurityViolation> get violations;
   @override
   bool get isFlagged;
-
-  /// Create a copy of QuizAttempt
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$QuizAttemptImplCopyWith<_$QuizAttemptImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

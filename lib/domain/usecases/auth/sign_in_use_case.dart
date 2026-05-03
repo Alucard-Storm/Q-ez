@@ -11,7 +11,7 @@ class SignInUseCase {
   /// Validates that the authenticated user has the expected role
   /// Returns the authenticated user
   /// Throws [AuthException] if authentication fails or role doesn't match
-  Future<User> call({
+  Future<AppUser> call({
     required String email,
     required String password,
     required UserRole role,

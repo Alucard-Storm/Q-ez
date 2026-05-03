@@ -11,18 +11,16 @@ import '../../domain/repositories/user_repository.dart';
 class FirebaseAuthRepository implements AuthRepository {
   final firebase_auth.FirebaseAuth _firebaseAuth;
   final FirebaseFirestore _firestore;
-  final UserRepository _userRepository;
 
   FirebaseAuthRepository({
     firebase_auth.FirebaseAuth? firebaseAuth,
     FirebaseFirestore? firestore,
-    required UserRepository userRepository,
+    UserRepository? userRepository,
   })  : _firebaseAuth = firebaseAuth ?? firebase_auth.FirebaseAuth.instance,
-        _firestore = firestore ?? FirebaseFirestore.instance,
-        _userRepository = userRepository;
+        _firestore = firestore ?? FirebaseFirestore.instance;
 
   @override
-  Future<User> signIn(String email, String password, UserRole role) async {
+  Future<AppUser> signIn(String email, String password, UserRole role) async {
     try {
       // Authenticate with Firebase Auth
       final credential = await _firebaseAuth.signInWithEmailAndPassword(
@@ -74,7 +72,7 @@ class FirebaseAuthRepository implements AuthRepository {
   }
 
   @override
-  Future<User> signUp(
+  Future<AppUser> signUp(
     String email,
     String password,
     String name,
@@ -95,7 +93,7 @@ class FirebaseAuthRepository implements AuthRepository {
       final now = DateTime.now();
 
       // Create user profile based on role
-      User user;
+      AppUser user;
       Map<String, dynamic> userData;
 
       switch (role) {
@@ -196,7 +194,7 @@ class FirebaseAuthRepository implements AuthRepository {
   }
 
   @override
-  Stream<User?> authStateChanges() {
+  Stream<AppUser?> authStateChanges() {
     return _firebaseAuth.authStateChanges().asyncMap((firebaseUser) async {
       if (firebaseUser == null) return null;
 
@@ -228,7 +226,7 @@ class FirebaseAuthRepository implements AuthRepository {
   }
 
   @override
-  Future<User?> getCurrentUser() async {
+  Future<AppUser?> getCurrentUser() async {
     try {
       final firebaseUser = _firebaseAuth.currentUser;
       if (firebaseUser == null) return null;
@@ -247,8 +245,8 @@ class FirebaseAuthRepository implements AuthRepository {
     }
   }
 
-  /// Build User entity from Firestore data
-  User _buildUserFromData(String userId, Map<String, dynamic> data) {
+  /// Build AppUser entity from Firestore data
+  AppUser _buildUserFromData(String userId, Map<String, dynamic> data) {
     final role = _parseUserRole(data[FirestoreConstants.userRole]);
     final email = data[FirestoreConstants.userEmail] as String;
     final name = data[FirestoreConstants.userName] as String;

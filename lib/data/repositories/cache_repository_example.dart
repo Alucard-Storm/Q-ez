@@ -7,7 +7,6 @@
 /// - Cache invalidation and sync logic
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../domain/entities/user.dart';
 import '../../domain/entities/quiz.dart';
 import '../providers/cache_provider.dart';
 

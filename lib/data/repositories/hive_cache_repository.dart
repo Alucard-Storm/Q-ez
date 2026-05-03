@@ -18,13 +18,13 @@ class HiveCacheRepository implements CacheRepository {
   // User session caching
 
   @override
-  Future<void> cacheUser(User user, {String? token}) async {
+  Future<void> cacheUser(AppUser user, {String? token}) async {
     final cachedUser = _convertUserToCached(user, token);
     await _userBox.put(_currentUserKey, cachedUser);
   }
 
   @override
-  Future<User?> getCachedUser() async {
+  Future<AppUser?> getCachedUser() async {
     final cachedUser = _userBox.get(_currentUserKey);
     if (cachedUser == null) return null;
 
@@ -145,7 +145,7 @@ class HiveCacheRepository implements CacheRepository {
     return settings;
   }
 
-  CachedUser _convertUserToCached(dynamic user, String? token) {
+  CachedUser _convertUserToCached(AppUser user, String? token) {
     if (user is Student) {
       return CachedUser(
         id: user.id,
@@ -196,7 +196,7 @@ class HiveCacheRepository implements CacheRepository {
     }
   }
 
-  dynamic _convertCachedToUser(CachedUser cached) {
+  AppUser _convertCachedToUser(CachedUser cached) {
     final role = UserRole.values.firstWhere(
       (r) => r.name == cached.role,
       orElse: () => UserRole.student,

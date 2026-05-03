@@ -25,12 +25,8 @@ mixin _$Question {
   List<String> get options => throw _privateConstructorUsedError;
   int get correctOptionIndex => throw _privateConstructorUsedError;
 
-  /// Serializes this Question to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of Question
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $QuestionCopyWith<Question> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -54,8 +50,6 @@ class _$QuestionCopyWithImpl<$Res, $Val extends Question>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Question
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -105,8 +99,6 @@ class __$$QuestionImplCopyWithImpl<$Res>
       _$QuestionImpl _value, $Res Function(_$QuestionImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of Question
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -182,14 +174,12 @@ class _$QuestionImpl extends _Question {
                 other.correctOptionIndex == correctOptionIndex));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, text,
       const DeepCollectionEquality().hash(_options), correctOptionIndex);
 
-  /// Create a copy of Question
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$QuestionImplCopyWith<_$QuestionImpl> get copyWith =>
@@ -222,11 +212,8 @@ abstract class _Question extends Question {
   List<String> get options;
   @override
   int get correctOptionIndex;
-
-  /// Create a copy of Question
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$QuestionImplCopyWith<_$QuestionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -247,12 +234,8 @@ mixin _$Quiz {
   DateTime get createdAt => throw _privateConstructorUsedError;
   bool get isActive => throw _privateConstructorUsedError;
 
-  /// Serializes this Quiz to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of Quiz
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $QuizCopyWith<Quiz> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -283,8 +266,6 @@ class _$QuizCopyWithImpl<$Res, $Val extends Quiz>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Quiz
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -365,8 +346,6 @@ class __$$QuizImplCopyWithImpl<$Res>
   __$$QuizImplCopyWithImpl(_$QuizImpl _value, $Res Function(_$QuizImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of Quiz
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -493,7 +472,7 @@ class _$QuizImpl extends _Quiz {
                 other.isActive == isActive));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -507,9 +486,7 @@ class _$QuizImpl extends _Quiz {
       createdAt,
       isActive);
 
-  /// Create a copy of Quiz
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$QuizImplCopyWith<_$QuizImpl> get copyWith =>
@@ -556,11 +533,8 @@ abstract class _Quiz extends Quiz {
   DateTime get createdAt;
   @override
   bool get isActive;
-
-  /// Create a copy of Quiz
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$QuizImplCopyWith<_$QuizImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

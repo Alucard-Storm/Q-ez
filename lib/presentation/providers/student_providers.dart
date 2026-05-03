@@ -4,6 +4,7 @@ import '../../data/repositories/firebase_badge_repository.dart';
 import '../../data/repositories/firebase_quiz_attempt_repository.dart';
 import '../../data/repositories/firebase_quiz_repository.dart';
 import '../../domain/entities/badge.dart';
+import '../../domain/entities/user.dart';
 import '../../domain/repositories/badge_repository.dart';
 import '../../domain/repositories/quiz_attempt_repository.dart';
 import '../../domain/repositories/quiz_repository.dart';
@@ -131,4 +132,12 @@ final studentAttemptsProvider =
     FutureProvider.family<List<dynamic>, String>((ref, studentId) async {
   final repository = ref.watch(_quizAttemptRepositoryProvider);
   return repository.getStudentAttempts(studentId);
+});
+
+/// Provider for all students in the system
+/// Returns a list of all students, used by teachers and admins
+/// Usage: ref.watch(allStudentsProvider)
+final allStudentsProvider = FutureProvider<List<Student>>((ref) async {
+  final repository = ref.watch(userRepositoryProvider);
+  return repository.getAllStudents();
 });

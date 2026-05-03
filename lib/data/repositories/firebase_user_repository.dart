@@ -56,7 +56,7 @@ class FirebaseUserRepository implements UserRepository {
   }
 
   @override
-  Future<User> getUser(String id) async {
+  Future<AppUser> getUser(String id) async {
     try {
       final docSnapshot = await _firestore
           .collection(FirestoreConstants.usersCollection)
@@ -201,7 +201,7 @@ class FirebaseUserRepository implements UserRepository {
   }
 
   @override
-  Future<List<User>> getAllUsers() async {
+  Future<List<AppUser>> getAllUsers() async {
     try {
       final querySnapshot = await _firestore
           .collection(FirestoreConstants.usersCollection)
@@ -251,7 +251,7 @@ class FirebaseUserRepository implements UserRepository {
   }
 
   @override
-  Future<void> updateUser(User user) async {
+  Future<void> updateUser(AppUser user) async {
     try {
       final docRef = _firestore.collection(FirestoreConstants.usersCollection).doc(user.id);
 
@@ -328,9 +328,8 @@ class FirebaseUserRepository implements UserRepository {
       throw UserException('Failed to delete user: ${e.toString()}');
     }
   }
-
   @override
-  Future<void> createUserProfile(User user) async {
+  Future<void> createUserProfile(AppUser user) async {
     try {
       final userData = _userToMap(user);
       await _firestore
@@ -342,8 +341,8 @@ class FirebaseUserRepository implements UserRepository {
     }
   }
 
-  /// Convert User entity to Firestore map
-  Map<String, dynamic> _userToMap(User user) {
+  /// Convert AppUser entity to Firestore map
+  Map<String, dynamic> _userToMap(AppUser user) {
     final baseData = {
       FirestoreConstants.userId: user.id,
       FirestoreConstants.userEmail: user.email,
@@ -376,8 +375,8 @@ class FirebaseUserRepository implements UserRepository {
     return baseData;
   }
 
-  /// Convert Firestore document to User entity
-  User _userFromSnapshot(DocumentSnapshot snapshot) {
+  /// Convert Firestore document to AppUser entity
+  AppUser _userFromSnapshot(DocumentSnapshot snapshot) {
     final data = snapshot.data() as Map<String, dynamic>;
     final role = _parseUserRole(data[FirestoreConstants.userRole]);
 

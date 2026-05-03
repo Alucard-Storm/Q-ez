@@ -139,7 +139,7 @@ class _QuizResultsScreenState extends ConsumerState<QuizResultsScreen>
     );
   }
 
-  Widget _buildResultsContent(QuizAttempt attempt, User user) {
+  Widget _buildResultsContent(QuizAttempt attempt, AppUser user) {
     final quizAsync = ref.watch(quizByIdProvider(attempt.quizId));
     
     return quizAsync.when(
@@ -149,7 +149,7 @@ class _QuizResultsScreenState extends ConsumerState<QuizResultsScreen>
     );
   }
 
-  Widget _buildResultsScreen(QuizAttempt attempt, Quiz quiz, User user) {
+  Widget _buildResultsScreen(QuizAttempt attempt, Quiz quiz, AppUser user) {
     final scorePercentage = attempt.scorePercentage;
     final passed = scorePercentage >= 60.0;
     final correctAnswers = _calculateCorrectAnswers(attempt, quiz);

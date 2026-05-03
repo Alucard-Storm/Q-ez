@@ -20,7 +20,7 @@ abstract class UserRepository {
   /// Get a user by ID (any role)
   /// Returns the User if found
   /// Throws [UserNotFoundException] if user doesn't exist
-  Future<User> getUser(String id);
+  Future<AppUser> getUser(String id);
 
   /// Update a student's level
   /// Throws [UserNotFoundException] if student doesn't exist
@@ -52,7 +52,7 @@ abstract class UserRepository {
 
   /// Get all users in the system (admin only)
   /// Returns a list of all users regardless of role
-  Future<List<User>> getAllUsers();
+  Future<List<AppUser>> getAllUsers();
 
   /// Get all students in the system
   /// Returns a list of all students
@@ -64,7 +64,7 @@ abstract class UserRepository {
 
   /// Update a user's profile information
   /// Throws [UserNotFoundException] if user doesn't exist
-  Future<void> updateUser(User user);
+  Future<void> updateUser(AppUser user);
 
   /// Delete a user by ID
   /// Also deletes all associated data (quiz attempts for students, quizzes for teachers)
@@ -73,5 +73,5 @@ abstract class UserRepository {
 
   /// Create a new user profile after authentication
   /// Used during sign up to create the initial user document
-  Future<void> createUserProfile(User user);
+  Future<void> createUserProfile(AppUser user);
 }

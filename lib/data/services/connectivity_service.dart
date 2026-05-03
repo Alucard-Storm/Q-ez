@@ -15,21 +15,18 @@ class ConnectivityService {
   ///
   /// Emits `true` when online, `false` when offline.
   Stream<bool> get onConnectivityChanged {
-    return _connectivity.onConnectivityChanged.map(_isOnline);
+    return _connectivity.onConnectivityChanged
+        .map((result) => result != ConnectivityResult.none);
   }
 
   /// Returns the current connectivity status synchronously (async check).
   Future<bool> isOnline() async {
     try {
       final result = await _connectivity.checkConnectivity();
-      return _isOnline(result);
+      return result != ConnectivityResult.none;
     } catch (e) {
       AppLogger.warning('ConnectivityService: failed to check connectivity', e);
       return true; // assume online on error to avoid blocking operations
     }
-  }
-
-  bool _isOnline(List<ConnectivityResult> results) {
-    return results.any((r) => r != ConnectivityResult.none);
   }
 }

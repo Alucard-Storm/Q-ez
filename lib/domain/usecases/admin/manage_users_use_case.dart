@@ -13,7 +13,7 @@ class ManageUsersUseCase {
   /// Validates that the current user is an admin
   /// Returns a list of all users
   /// Throws [Exception] if user is not an admin
-  Future<List<User>> getAllUsers() async {
+  Future<List<AppUser>> getAllUsers() async {
     await _validateAdminAccess();
     return await _userRepository.getAllUsers();
   }
@@ -41,7 +41,7 @@ class ManageUsersUseCase {
   /// Returns the user if found
   /// Throws [Exception] if user is not an admin
   /// Throws [UserNotFoundException] if user doesn't exist
-  Future<User> getUser(String userId) async {
+  Future<AppUser> getUser(String userId) async {
     await _validateAdminAccess();
     return await _userRepository.getUser(userId);
   }
@@ -51,7 +51,7 @@ class ManageUsersUseCase {
   /// Updates user data in the database
   /// Throws [Exception] if user is not an admin
   /// Throws [UserNotFoundException] if user doesn't exist
-  Future<void> updateUser(User user) async {
+  Future<void> updateUser(AppUser user) async {
     await _validateAdminAccess();
     await _userRepository.updateUser(user);
   }
@@ -92,7 +92,7 @@ class ManageUsersUseCase {
   /// Validate that the current user is an admin
   /// Returns the current user if they are an admin
   /// Throws [Exception] if user is not authenticated or not an admin
-  Future<User> _validateAdminAccess() async {
+  Future<AppUser> _validateAdminAccess() async {
     final currentUser = await _authRepository.getCurrentUser();
 
     if (currentUser == null) {

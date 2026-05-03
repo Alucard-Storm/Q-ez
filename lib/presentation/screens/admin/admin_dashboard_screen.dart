@@ -106,7 +106,7 @@ class AdminDashboardScreen extends ConsumerWidget {
 
   Widget _buildPlatformStatistics(
     BuildContext context,
-    AsyncValue<List<User>> allUsersAsync,
+    AsyncValue<List<AppUser>> allUsersAsync,
     AsyncValue<List<dynamic>> allQuizzesAsync,
   ) {
     return Column(
@@ -159,7 +159,7 @@ class AdminDashboardScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildUserBreakdown(BuildContext context, AsyncValue<List<User>> allUsersAsync) {
+  Widget _buildUserBreakdown(BuildContext context, AsyncValue<List<AppUser>> allUsersAsync) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

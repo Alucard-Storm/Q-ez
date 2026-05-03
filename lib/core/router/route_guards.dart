@@ -15,7 +15,7 @@ class AuthGuard {
   }
 
   /// Get current user
-  User? getCurrentUser() {
+  AppUser? getCurrentUser() {
     final authState = ref.read(authStateProvider);
     return authState.value;
   }

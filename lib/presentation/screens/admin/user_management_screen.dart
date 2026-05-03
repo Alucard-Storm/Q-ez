@@ -190,7 +190,7 @@ class _UserManagementScreenState extends ConsumerState<UserManagementScreen> {
     );
   }
 
-  Widget _buildUserList(BuildContext context, WidgetRef ref, List<User> users) {
+  Widget _buildUserList(BuildContext context, WidgetRef ref, List<AppUser> users) {
     // Filter users based on search query and role
     final filteredUsers = users.where((user) {
       final matchesSearch = _searchQuery.isEmpty ||
@@ -255,7 +255,7 @@ class _UserManagementScreenState extends ConsumerState<UserManagementScreen> {
     );
   }
 
-  Widget _buildUserCard(BuildContext context, WidgetRef ref, User user) {
+  Widget _buildUserCard(BuildContext context, WidgetRef ref, AppUser user) {
     return Card(
       margin: const EdgeInsets.only(bottom: 12),
       child: Padding(
@@ -354,7 +354,7 @@ class _UserManagementScreenState extends ConsumerState<UserManagementScreen> {
     );
   }
 
-  Widget _buildUserStatistics(User user) {
+  Widget _buildUserStatistics(AppUser user) {
     if (user is Student) {
       return Row(
         children: [
@@ -438,7 +438,7 @@ class _UserManagementScreenState extends ConsumerState<UserManagementScreen> {
     }
   }
 
-  void _showEditUserDialog(BuildContext context, WidgetRef ref, User user) {
+  void _showEditUserDialog(BuildContext context, WidgetRef ref, AppUser user) {
     final nameController = TextEditingController(text: user.name);
     final emailController = TextEditingController(text: user.email);
 
@@ -487,7 +487,7 @@ class _UserManagementScreenState extends ConsumerState<UserManagementScreen> {
   Future<void> _updateUser(
     BuildContext context,
     WidgetRef ref,
-    User user,
+    AppUser user,
     String newName,
     String newEmail,
   ) async {
@@ -495,13 +495,15 @@ class _UserManagementScreenState extends ConsumerState<UserManagementScreen> {
       final useCase = ref.read(manageUsersUseCaseProvider);
       
       // Create updated user based on type
-      User updatedUser;
+      AppUser updatedUser;
       if (user is Student) {
         updatedUser = user.copyWith(name: newName, email: newEmail);
       } else if (user is Teacher) {
         updatedUser = user.copyWith(name: newName, email: newEmail);
-      } else {
+      } else if (user is Admin) {
         updatedUser = user.copyWith(name: newName, email: newEmail);
+      } else {
+        throw Exception('Unknown user type');
       }
       
       await useCase.updateUser(updatedUser);
@@ -523,7 +525,7 @@ class _UserManagementScreenState extends ConsumerState<UserManagementScreen> {
     }
   }
 
-  Future<void> _resetUserPassword(BuildContext context, WidgetRef ref, User user) async {
+  Future<void> _resetUserPassword(BuildContext context, WidgetRef ref, AppUser user) async {
     try {
       final useCase = ref.read(manageUsersUseCaseProvider);
       await useCase.resetUserPassword(user.id);
@@ -542,7 +544,7 @@ class _UserManagementScreenState extends ConsumerState<UserManagementScreen> {
     }
   }
 
-  void _showDeleteConfirmation(BuildContext context, WidgetRef ref, User user) {
+  void _showDeleteConfirmation(BuildContext context, WidgetRef ref, AppUser user) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -594,7 +596,7 @@ class _UserManagementScreenState extends ConsumerState<UserManagementScreen> {
     );
   }
 
-  Future<void> _deleteUser(BuildContext context, WidgetRef ref, User user) async {
+  Future<void> _deleteUser(BuildContext context, WidgetRef ref, AppUser user) async {
     try {
       final useCase = ref.read(manageUsersUseCaseProvider);
       await useCase.deleteUser(user.id);

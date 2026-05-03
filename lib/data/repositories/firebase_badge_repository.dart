@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../core/constants/firestore_constants.dart';
 import '../../core/errors/exceptions.dart';
 import '../../domain/entities/badge.dart';
-import '../../domain/entities/user.dart';
 import '../../domain/repositories/badge_repository.dart';
 import '../../domain/repositories/user_repository.dart';
 

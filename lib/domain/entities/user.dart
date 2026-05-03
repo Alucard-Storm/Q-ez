@@ -9,8 +9,19 @@ enum UserRole {
   admin,
 }
 
+/// Abstract base for all user types.
+/// Provides common fields shared by User, Student, Teacher, and Admin.
+abstract class AppUser {
+  String get id;
+  String get email;
+  String get name;
+  UserRole get role;
+  DateTime get createdAt;
+  DateTime get lastLoginAt;
+}
+
 @freezed
-class User with _$User {
+class User with _$User implements AppUser {
   const factory User({
     required String id,
     required String email,
@@ -24,7 +35,7 @@ class User with _$User {
 }
 
 @freezed
-class Student with _$Student {
+class Student with _$Student implements AppUser {
   const factory Student({
     required String id,
     required String email,
@@ -43,7 +54,7 @@ class Student with _$Student {
 }
 
 @freezed
-class Teacher with _$Teacher {
+class Teacher with _$Teacher implements AppUser {
   const factory Teacher({
     required String id,
     required String email,
@@ -59,7 +70,7 @@ class Teacher with _$Teacher {
 }
 
 @freezed
-class Admin with _$Admin {
+class Admin with _$Admin implements AppUser {
   const factory Admin({
     required String id,
     required String email,

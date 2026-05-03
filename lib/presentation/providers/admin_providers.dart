@@ -59,7 +59,7 @@ final _adminQuizAttemptRepositoryProvider =
 /// Provider for all users in the system (admin only)
 /// Returns a list of all users regardless of role
 /// Throws exception if current user is not an admin
-final allUsersProvider = FutureProvider<List<User>>((ref) async {
+final allUsersProvider = FutureProvider<List<AppUser>>((ref) async {
   final useCase = ref.watch(manageUsersUseCaseProvider);
   return useCase.getAllUsers();
 });
@@ -83,7 +83,7 @@ final allTeachersProvider = FutureProvider<List<Teacher>>((ref) async {
 /// Provider for a specific user by ID (admin only)
 /// Usage: ref.watch(userByIdProvider(userId))
 final userByIdProvider =
-    FutureProvider.family<User, String>((ref, userId) async {
+    FutureProvider.family<AppUser, String>((ref, userId) async {
   final useCase = ref.watch(manageUsersUseCaseProvider);
   return useCase.getUser(userId);
 });

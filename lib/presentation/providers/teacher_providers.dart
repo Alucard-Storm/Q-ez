@@ -1,7 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../domain/entities/quiz.dart';
 import '../../domain/entities/quiz_attempt.dart';
-import '../../domain/entities/user.dart';
 import '../../domain/usecases/quiz/create_quiz_use_case.dart';
 import '../../domain/usecases/quiz/update_quiz_use_case.dart';
 import '../../domain/usecases/quiz/delete_quiz_use_case.dart';

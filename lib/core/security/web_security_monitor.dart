@@ -33,9 +33,9 @@ class WebSecurityMonitor {
     final body = html.document.body;
     if (body != null) {
       body.style.userSelect = 'none';
-      body.style.webkitUserSelect = 'none';
-      body.style.mozUserSelect = 'none';
-      body.style.msUserSelect = 'none';
+      body.style.setProperty('-webkit-user-select', 'none');
+      body.style.setProperty('-moz-user-select', 'none');
+      body.style.setProperty('-ms-user-select', 'none');
     }
   }
 
@@ -68,9 +68,9 @@ class WebSecurityMonitor {
     final body = html.document.body;
     if (body != null) {
       body.style.userSelect = 'auto';
-      body.style.webkitUserSelect = 'auto';
-      body.style.mozUserSelect = 'auto';
-      body.style.msUserSelect = 'auto';
+      body.style.setProperty('-webkit-user-select', 'auto');
+      body.style.setProperty('-moz-user-select', 'auto');
+      body.style.setProperty('-ms-user-select', 'auto');
     }
     
     _isInitialized = false;

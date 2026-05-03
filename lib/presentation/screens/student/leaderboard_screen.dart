@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/widgets/skeleton_loader.dart';
-import '../../../domain/entities/user.dart';
 import '../../../domain/usecases/progress/get_leaderboard_use_case.dart';
 import '../../providers/auth_providers.dart';
 import '../../providers/student_providers.dart';

@@ -4,8 +4,8 @@ import '../entities/quiz.dart';
 /// Repository interface for local caching operations
 abstract class CacheRepository {
   // User session caching
-  Future<void> cacheUser(User user, {String? token});
-  Future<User?> getCachedUser();
+  Future<void> cacheUser(AppUser user, {String? token});
+  Future<AppUser?> getCachedUser();
   Future<String?> getCachedToken();
   Future<void> clearUserCache();
 

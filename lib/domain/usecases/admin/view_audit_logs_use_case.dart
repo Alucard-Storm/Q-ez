@@ -187,7 +187,7 @@ class ViewAuditLogsUseCase {
   /// Validate that the current user is an admin
   /// Returns the current user if they are an admin
   /// Throws [Exception] if user is not authenticated or not an admin
-  Future<User> _validateAdminAccess() async {
+  Future<AppUser> _validateAdminAccess() async {
     final currentUser = await _authRepository.getCurrentUser();
 
     if (currentUser == null) {
