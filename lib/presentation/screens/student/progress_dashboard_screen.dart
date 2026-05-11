@@ -328,7 +328,7 @@ class _ProgressDashboardScreenState extends ConsumerState<ProgressDashboardScree
                           final index = value.toInt();
                           if (index >= 0 && index < filteredAttempts.length) {
                             return SideTitleWidget(
-                              axisSide: meta.axisSide,
+                              meta: meta,
                               child: Text(
                                 '${index + 1}',
                                 style: const TextStyle(
@@ -339,7 +339,10 @@ class _ProgressDashboardScreenState extends ConsumerState<ProgressDashboardScree
                               ),
                             );
                           }
-                          return Container();
+                          return SideTitleWidget(
+                            meta: meta,
+                            child: const Text(''),
+                          );
                         },
                       ),
                     ),
@@ -348,12 +351,15 @@ class _ProgressDashboardScreenState extends ConsumerState<ProgressDashboardScree
                         showTitles: true,
                         interval: 20,
                         getTitlesWidget: (value, meta) {
-                          return Text(
-                            '${value.toInt()}%',
-                            style: const TextStyle(
-                              color: Colors.grey,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 12,
+                          return SideTitleWidget(
+                            meta: meta,
+                            child: Text(
+                              '${value.toInt()}%',
+                              style: const TextStyle(
+                                color: Colors.grey,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 12,
+                              ),
                             ),
                           );
                         },
@@ -415,7 +421,7 @@ class _ProgressDashboardScreenState extends ConsumerState<ProgressDashboardScree
                   lineTouchData: LineTouchData(
                     enabled: true,
                     touchTooltipData: LineTouchTooltipData(
-                      tooltipBgColor: Colors.blueAccent,
+                      getTooltipColor: (touchedSpot) => Colors.blueAccent,
                       getTooltipItems: (List<LineBarSpot> touchedBarSpots) {
                         return touchedBarSpots.map((barSpot) {
                           final flSpot = barSpot;

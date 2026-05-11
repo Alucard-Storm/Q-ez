@@ -30,6 +30,12 @@ class FirebaseConfig {
 
   /// Initialize Firebase Crashlytics for error reporting
   static Future<void> _initializeCrashlytics() async {
+    if (kIsWeb) {
+      if (kDebugMode) {
+        print('Firebase Crashlytics is not supported on Web. Skipping initialization.');
+      }
+      return;
+    }
     // Pass all uncaught errors from the framework to Crashlytics
     FlutterError.onError = (errorDetails) {
       FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);

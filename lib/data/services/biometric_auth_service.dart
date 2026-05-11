@@ -64,10 +64,8 @@ class BiometricAuthService {
     try {
       return await _localAuth.authenticate(
         localizedReason: reason,
-        options: const AuthenticationOptions(
-          biometricOnly: false, // allow PIN/pattern fallback
-          stickyAuth: true,
-        ),
+        biometricOnly: false, // allow PIN/pattern fallback
+        persistAcrossBackgrounding: true,
       );
     } on PlatformException {
       return false;
