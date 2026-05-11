@@ -127,7 +127,7 @@ class _ProgressDashboardScreenState extends ConsumerState<ProgressDashboardScree
       ),
       data: (progressData) => RefreshIndicator(
         onRefresh: () async {
-          ref.invalidate(progressDashboardProvider(studentId));
+          return ref.refresh(progressDashboardProvider(studentId).future);
         },
         child: SingleChildScrollView(
           physics: const AlwaysScrollableScrollPhysics(),
@@ -746,7 +746,7 @@ class _ProgressDashboardScreenState extends ConsumerState<ProgressDashboardScree
     final failCount = filteredAttempts.length - passCount;
     final averageScore = filteredAttempts.isEmpty
         ? 0.0
-        : filteredAttempts.map((a) => a.scorePercentage).reduce((a, b) => a + b) / filteredAttempts.length;
+        : filteredAttempts.fold(0.0, (sum, a) => sum + a.scorePercentage) / filteredAttempts.length;
 
     // Calculate improvement trend for filtered data
     double improvementTrend = 0.0;

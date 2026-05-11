@@ -67,7 +67,7 @@ final allUsersProvider = FutureProvider<List<AppUser>>((ref) async {
 /// Provider for all students in the system (admin only)
 /// Returns a list of all students
 /// Throws exception if current user is not an admin
-final allStudentsProvider = FutureProvider<List<Student>>((ref) async {
+final adminAllStudentsProvider = FutureProvider<List<Student>>((ref) async {
   final useCase = ref.watch(manageUsersUseCaseProvider);
   return useCase.getAllStudents();
 });

@@ -229,7 +229,7 @@ class _LeaderboardScreenState extends ConsumerState<LeaderboardScreen> {
         gradient: LinearGradient(
           colors: [
             Theme.of(context).colorScheme.primary,
-            Theme.of(context).colorScheme.primary.withOpacity(0.8),
+            Theme.of(context).colorScheme.primary.withValues(alpha: 0.8),
           ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
@@ -255,7 +255,7 @@ class _LeaderboardScreenState extends ConsumerState<LeaderboardScreen> {
           Text(
             '$totalStudents students competing',
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.9),
+              color: Theme.of(context).colorScheme.onPrimary.withValues(alpha: 0.9),
             ),
           ),
         ],
@@ -278,17 +278,17 @@ class _LeaderboardScreenState extends ConsumerState<LeaderboardScreen> {
     
     if (rank == 1) {
       rankWidget = const Icon(Icons.emoji_events, color: Colors.amber, size: 32);
-      cardColor = Colors.amber.withOpacity(0.1);
+      cardColor = Colors.amber.withValues(alpha: 0.1);
     } else if (rank == 2) {
       rankWidget = const Icon(Icons.emoji_events, color: Colors.grey, size: 28);
-      cardColor = Colors.grey.withOpacity(0.1);
+      cardColor = Colors.grey.withValues(alpha: 0.1);
     } else if (rank == 3) {
       rankWidget = const Icon(Icons.emoji_events, color: Colors.brown, size: 24);
-      cardColor = Colors.brown.withOpacity(0.1);
+      cardColor = Colors.brown.withValues(alpha: 0.1);
     } else {
       rankWidget = CircleAvatar(
         radius: 16,
-        backgroundColor: Theme.of(context).colorScheme.primary.withOpacity(0.1),
+        backgroundColor: Theme.of(context).colorScheme.primary.withValues(alpha: 0.1),
         child: Text(
           rank.toString(),
           style: TextStyle(
@@ -302,7 +302,7 @@ class _LeaderboardScreenState extends ConsumerState<LeaderboardScreen> {
 
     // Highlight current user
     if (isCurrentUser) {
-      cardColor = Theme.of(context).colorScheme.primary.withOpacity(0.1);
+      cardColor = Theme.of(context).colorScheme.primary.withValues(alpha: 0.1);
     }
 
     return Container(
@@ -334,7 +334,7 @@ class _LeaderboardScreenState extends ConsumerState<LeaderboardScreen> {
               // Student avatar
               CircleAvatar(
                 radius: 24,
-                backgroundColor: Theme.of(context).colorScheme.secondary.withOpacity(0.2),
+                backgroundColor: Theme.of(context).colorScheme.secondary.withValues(alpha: 0.2),
                 child: Text(
                   student.name.isNotEmpty ? student.name[0].toUpperCase() : 'S',
                   style: TextStyle(

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 /// Example usage of the HiveCacheRepository
 /// 
 /// This file demonstrates how to use the cache repository for:
@@ -17,7 +18,7 @@ Future<void> exampleCacheUserSession(WidgetRef ref, dynamic user, String token) 
   // Cache the user with authentication token (can be Student, Teacher, or Admin)
   await cacheRepo.cacheUser(user, token: token);
   
-  print('User cached successfully');
+  debugPrint('User cached successfully');
 }
 
 /// Example: Retrieve cached user on app startup
@@ -28,15 +29,15 @@ Future<void> exampleGetCachedUser(WidgetRef ref) async {
   final cachedUser = await cacheRepo.getCachedUser();
   
   if (cachedUser != null) {
-    print('Found cached user: ${cachedUser.name}');
+    debugPrint('Found cached user: ${cachedUser.name}');
     
     // Get cached token for auto-login
     final token = await cacheRepo.getCachedToken();
     if (token != null) {
-      print('Token available for auto-login');
+      debugPrint('Token available for auto-login');
     }
   } else {
-    print('No cached user found, show login screen');
+    debugPrint('No cached user found, show login screen');
   }
 }
 
@@ -47,7 +48,7 @@ Future<void> exampleCacheQuiz(WidgetRef ref, Quiz quiz) async {
   // Cache the quiz
   await cacheRepo.cacheQuiz(quiz);
   
-  print('Quiz "${quiz.title}" cached for offline access');
+  debugPrint('Quiz "${quiz.title}" cached for offline access');
 }
 
 /// Example: Get cached quiz when offline
@@ -58,9 +59,9 @@ Future<void> exampleGetCachedQuiz(WidgetRef ref, String quizId) async {
   final cachedQuiz = await cacheRepo.getCachedQuiz(quizId);
   
   if (cachedQuiz != null) {
-    print('Quiz loaded from cache: ${cachedQuiz.title}');
+    debugPrint('Quiz loaded from cache: ${cachedQuiz.title}');
   } else {
-    print('Quiz not in cache, need network connection');
+    debugPrint('Quiz not in cache, need network connection');
   }
 }
 
@@ -70,9 +71,9 @@ Future<void> exampleGetAllCachedQuizzes(WidgetRef ref) async {
   
   final cachedQuizzes = await cacheRepo.getAllCachedQuizzes();
   
-  print('Found ${cachedQuizzes.length} cached quizzes');
+  debugPrint('Found ${cachedQuizzes.length} cached quizzes');
   for (final quiz in cachedQuizzes) {
-    print('- ${quiz.title}');
+    debugPrint('- ${quiz.title}');
   }
 }
 
@@ -94,10 +95,10 @@ Future<void> exampleManageSecuritySettings(WidgetRef ref) async {
   final maxViolations = await cacheRepo.getMaxViolations();
   final strictMode = await cacheRepo.isStrictModeEnabled();
   
-  print('Security Settings:');
-  print('- Biometric: $biometricEnabled');
-  print('- Max Violations: $maxViolations');
-  print('- Strict Mode: $strictMode');
+  debugPrint('Security Settings:');
+  debugPrint('- Biometric: $biometricEnabled');
+  debugPrint('- Max Violations: $maxViolations');
+  debugPrint('- Strict Mode: $strictMode');
 }
 
 /// Example: Clear cache on logout
@@ -107,7 +108,7 @@ Future<void> exampleLogout(WidgetRef ref) async {
   // Clear user session data
   await cacheRepo.clearUserCache();
   
-  print('User logged out, cache cleared');
+  debugPrint('User logged out, cache cleared');
 }
 
 /// Example: Clear all cache
@@ -117,7 +118,7 @@ Future<void> exampleClearAllCache(WidgetRef ref) async {
   // Clear everything
   await cacheRepo.clearAllCache();
   
-  print('All cache cleared');
+  debugPrint('All cache cleared');
 }
 
 /// Example: Cache invalidation strategy
@@ -128,7 +129,7 @@ Future<void> exampleCacheInvalidation(WidgetRef ref) async {
   final isValid = await cacheRepo.isCacheValid();
   
   if (!isValid) {
-    print('Cache is invalid, need to sync with server');
+    debugPrint('Cache is invalid, need to sync with server');
     
     // Invalidate and clear cache
     await cacheRepo.invalidateCache();
@@ -136,7 +137,7 @@ Future<void> exampleCacheInvalidation(WidgetRef ref) async {
     // Re-fetch data from server
     // ... fetch logic here ...
   } else {
-    print('Cache is valid, using cached data');
+    debugPrint('Cache is valid, using cached data');
   }
 }
 
@@ -148,7 +149,7 @@ Future<void> exampleSyncQuiz(WidgetRef ref, String quizId) async {
   var quiz = await cacheRepo.getCachedQuiz(quizId);
   
   if (quiz == null) {
-    print('Quiz not in cache, fetching from server...');
+    debugPrint('Quiz not in cache, fetching from server...');
     
     // Fetch from server (pseudo-code)
     // quiz = await quizRepository.getQuizById(quizId);
@@ -156,9 +157,9 @@ Future<void> exampleSyncQuiz(WidgetRef ref, String quizId) async {
     // Cache for offline access
     // await cacheRepo.cacheQuiz(quiz);
     
-    print('Quiz fetched and cached');
+    debugPrint('Quiz fetched and cached');
   } else {
-    print('Quiz loaded from cache');
+    debugPrint('Quiz loaded from cache');
   }
 }
 
@@ -169,5 +170,5 @@ Future<void> exampleRemoveCachedQuiz(WidgetRef ref, String quizId) async {
   // Remove specific quiz from cache
   await cacheRepo.removeCachedQuiz(quizId);
   
-  print('Quiz removed from cache');
+  debugPrint('Quiz removed from cache');
 }

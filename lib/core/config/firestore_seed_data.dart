@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 /// Seed data for initializing Firestore collections
@@ -11,7 +12,7 @@ class FirestoreSeedData {
     // Check if badges already exist
     final snapshot = await badgesRef.limit(1).get();
     if (snapshot.docs.isNotEmpty) {
-      print('Badges already seeded, skipping...');
+      debugPrint('Badges already seeded, skipping...');
       return;
     }
 
@@ -104,7 +105,7 @@ class FirestoreSeedData {
     }
 
     await batch.commit();
-    print('Successfully seeded ${badges.length} badges');
+    debugPrint('Successfully seeded ${badges.length} badges');
   }
 
   /// Initialize global leaderboard document
@@ -114,7 +115,7 @@ class FirestoreSeedData {
     // Check if leaderboard already exists
     final doc = await leaderboardRef.get();
     if (doc.exists) {
-      print('Global leaderboard already initialized, skipping...');
+      debugPrint('Global leaderboard already initialized, skipping...');
       return;
     }
 
@@ -123,19 +124,19 @@ class FirestoreSeedData {
       'lastUpdated': FieldValue.serverTimestamp(),
     });
 
-    print('Successfully initialized global leaderboard');
+    debugPrint('Successfully initialized global leaderboard');
   }
 
   /// Run all seed operations
   static Future<void> seedAll() async {
     try {
-      print('Starting Firestore seed operations...');
+      debugPrint('Starting Firestore seed operations...');
       await seedBadges();
       await initializeGlobalLeaderboard();
-      print('All seed operations completed successfully');
+      debugPrint('All seed operations completed successfully');
     } catch (e, stackTrace) {
-      print('Error seeding Firestore: $e');
-      print('Stack trace: $stackTrace');
+      debugPrint('Error seeding Firestore: $e');
+      debugPrint('Stack trace: $stackTrace');
       rethrow;
     }
   }

@@ -143,7 +143,7 @@ class _QuizTopStudentsScreenState extends ConsumerState<QuizTopStudentsScreen> {
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Theme.of(context).colorScheme.primary.withOpacity(0.3),
+            color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.3),
             blurRadius: 8,
             offset: const Offset(0, 4),
           ),
@@ -157,7 +157,7 @@ class _QuizTopStudentsScreenState extends ConsumerState<QuizTopStudentsScreen> {
               Container(
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.2),
+                  color: Colors.white.withValues(alpha: 0.2),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Icon(
@@ -182,7 +182,7 @@ class _QuizTopStudentsScreenState extends ConsumerState<QuizTopStudentsScreen> {
                     Text(
                       quiz.title,
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.9),
+                        color: Theme.of(context).colorScheme.onPrimary.withValues(alpha: 0.9),
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -195,7 +195,7 @@ class _QuizTopStudentsScreenState extends ConsumerState<QuizTopStudentsScreen> {
           Container(
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.1),
+              color: Colors.white.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(8),
             ),
             child: Row(
@@ -203,13 +203,13 @@ class _QuizTopStudentsScreenState extends ConsumerState<QuizTopStudentsScreen> {
                 Icon(
                   Icons.quiz,
                   size: 16,
-                  color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.8),
+                  color: Theme.of(context).colorScheme.onPrimary.withValues(alpha: 0.8),
                 ),
                 const SizedBox(width: 8),
                 Text(
                   '${quiz.questions.length} questions',
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.8),
+                    color: Theme.of(context).colorScheme.onPrimary.withValues(alpha: 0.8),
                   ),
                 ),
                 const SizedBox(width: 16),
@@ -217,13 +217,13 @@ class _QuizTopStudentsScreenState extends ConsumerState<QuizTopStudentsScreen> {
                   Icon(
                     Icons.timer,
                     size: 16,
-                    color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.8),
+                    color: Theme.of(context).colorScheme.onPrimary.withValues(alpha: 0.8),
                   ),
                   const SizedBox(width: 8),
                   Text(
                     '${quiz.timeLimitMinutes} min limit',
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.8),
+                      color: Theme.of(context).colorScheme.onPrimary.withValues(alpha: 0.8),
                     ),
                   ),
                 ],
@@ -313,8 +313,8 @@ class _QuizTopStudentsScreenState extends ConsumerState<QuizTopStudentsScreen> {
         ),
         child: const Icon(Icons.emoji_events, color: Colors.white, size: 24),
       );
-      cardColor = Colors.amber.withOpacity(0.1);
-      borderColor = Colors.amber.withOpacity(0.3);
+      cardColor = Colors.amber.withValues(alpha: 0.1);
+      borderColor = Colors.amber.withValues(alpha: 0.3);
     } else if (rank == 2) {
       rankWidget = Container(
         padding: const EdgeInsets.all(8),
@@ -324,8 +324,8 @@ class _QuizTopStudentsScreenState extends ConsumerState<QuizTopStudentsScreen> {
         ),
         child: const Icon(Icons.emoji_events, color: Colors.white, size: 22),
       );
-      cardColor = Colors.grey.withOpacity(0.1);
-      borderColor = Colors.grey.withOpacity(0.3);
+      cardColor = Colors.grey.withValues(alpha: 0.1);
+      borderColor = Colors.grey.withValues(alpha: 0.3);
     } else if (rank == 3) {
       rankWidget = Container(
         padding: const EdgeInsets.all(8),
@@ -335,17 +335,17 @@ class _QuizTopStudentsScreenState extends ConsumerState<QuizTopStudentsScreen> {
         ),
         child: const Icon(Icons.emoji_events, color: Colors.white, size: 20),
       );
-      cardColor = Colors.brown.withOpacity(0.1);
-      borderColor = Colors.brown.withOpacity(0.3);
+      cardColor = Colors.brown.withValues(alpha: 0.1);
+      borderColor = Colors.brown.withValues(alpha: 0.3);
     } else {
       rankWidget = Container(
         width: 40,
         height: 40,
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
+          color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.1),
           shape: BoxShape.circle,
           border: Border.all(
-            color: Theme.of(context).colorScheme.primary.withOpacity(0.3),
+            color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.3),
             width: 2,
           ),
         ),
@@ -364,7 +364,7 @@ class _QuizTopStudentsScreenState extends ConsumerState<QuizTopStudentsScreen> {
 
     // Highlight current user
     if (isCurrentUser) {
-      cardColor = Theme.of(context).colorScheme.primary.withOpacity(0.15);
+      cardColor = Theme.of(context).colorScheme.primary.withValues(alpha: 0.15);
       borderColor = Theme.of(context).colorScheme.primary;
     }
 
@@ -391,7 +391,7 @@ class _QuizTopStudentsScreenState extends ConsumerState<QuizTopStudentsScreen> {
               // Student avatar
               CircleAvatar(
                 radius: 28,
-                backgroundColor: Theme.of(context).colorScheme.secondary.withOpacity(0.2),
+                backgroundColor: Theme.of(context).colorScheme.secondary.withValues(alpha: 0.2),
                 child: Text(
                   student.name.isNotEmpty ? student.name[0].toUpperCase() : 'S',
                   style: TextStyle(
@@ -491,10 +491,10 @@ class _QuizTopStudentsScreenState extends ConsumerState<QuizTopStudentsScreen> {
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                     decoration: BoxDecoration(
-                      color: _getScoreColor(scorePercentage).withOpacity(0.1),
+                      color: _getScoreColor(scorePercentage).withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
-                        color: _getScoreColor(scorePercentage).withOpacity(0.3),
+                        color: _getScoreColor(scorePercentage).withValues(alpha: 0.3),
                       ),
                     ),
                     child: Text(
